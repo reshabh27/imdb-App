@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 const getUserFromLocalStorage = () => {
-  return JSON.parse(localStorage.getItem("user")) || null;
+  return JSON.parse(localStorage.getItem("userIMDB")) || {};
 };
 
 const initialState = {
@@ -14,24 +14,21 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     loginUser: (state, action) => {
-      const user = {
-        ...action.payload.user,
-        token: action.payload.accessToken,
-      };
+      const user = { ...action.payload.user};
       state.user = user;
-      localStorage.setItem("user", JSON.stringify(user));
-      toast.success("Welcome to the E-commerce website", {
-        position: "top-center",
-        autoClose: 2000,
-      });
+      localStorage.setItem("userIMDB", JSON.stringify(user));
+    //   toast.success("Welcome to the E-commerce website", {
+    //     position: "top-center",
+    //     autoClose: 2000,
+    //   });
     },
     logoutUser: (state) => {
       state.user = null;
-      localStorage.removeItem("user");
-      toast.error("you have logged out", {
-        position: "top-center",
-        autoClose: 2000,
-      });
+      localStorage.removeItem("userIMDB");
+    //   toast.error("you have logged out", {
+    //     position: "top-center",
+    //     autoClose: 2000,
+    //   });
     },
   },
 });

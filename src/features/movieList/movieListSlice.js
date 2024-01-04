@@ -1,5 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 const defaultState = {
   cartItems: [],
@@ -27,10 +27,10 @@ const movieListSlice = createSlice({
       state.numItemsInCart += product.amount;
       state.cartTotal += product.price * product.amount;
       localStorage.setItem("cart", JSON.stringify(state));
-      toast("Item added to cart", {
-        position: "top-center",
-        autoClose: 2000,
-      });
+      // toast("Item added to cart", {
+      //   position: "top-center",
+      //   autoClose: 2000,
+      // });
     },
     clearCart: (state) => {
       localStorage.setItem("cart", JSON.stringify(defaultState));
@@ -45,10 +45,10 @@ const movieListSlice = createSlice({
       // console.log(cartSlice);
       // console.log(cartSlice.reducer);
       localStorage.setItem("cart", JSON.stringify(state));
-      toast.error("Item removed from cart", {
-        position: "top-center",
-        autoClose: 2000,
-      });
+      // toast.error("Item removed from cart", {
+      //   position: "top-center",
+      //   autoClose: 2000,
+      // });
     },
     editItem: (state, action) => {
       const { cartID, amount } = action.payload;
@@ -57,9 +57,9 @@ const movieListSlice = createSlice({
       state.cartTotal += item.price * (amount - item.amount);
       item.amount = amount;
       localStorage.setItem("cart", JSON.stringify(state));
-      toast.success("Cart updated", {
-        position: "top-center",
-      });
+      // toast.success("Cart updated", {
+      //   position: "top-center",
+      // });
     },
     removeAllItem: (state) => {
       console.log(current(state));
@@ -67,10 +67,10 @@ const movieListSlice = createSlice({
       state.numItemsInCart = 0;
       state.cartTotal = 0;
       localStorage.setItem("cart", JSON.stringify(state));
-      toast.success("Your purchase has been confirmed!", {
-        position: "top-center",
-        autoClose: 2000,
-      });
+      // toast.success("Your purchase has been confirmed!", {
+      //   position: "top-center",
+      //   autoClose: 2000,
+      // });
     },
   },
 });
