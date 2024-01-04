@@ -15,6 +15,8 @@ import Landing from './pages/Landing';
 
 import { action as signUpAction } from "./pages/SignUp";
 import { action as loginAction } from "./pages/Login";
+import Favorite from './pages/Favorite';
+import AddMovies from './pages/AddMovies';
 
 
 const router = createBrowserRouter([
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
         index: true,
         element: <Landing />,
       },
+      {
+        path: 'favorite',
+        element: <Favorite />
+      },
+      {
+        path:'addMovies',
+        element: <AddMovies />
+      }
     ],
   },
   {

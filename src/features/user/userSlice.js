@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // import { toast } from "react-toastify";
 
 const getUserFromLocalStorage = () => {
-  return JSON.parse(localStorage.getItem("userIMDB")) || {};
+  return JSON.parse(localStorage.getItem("userIMDB")) || null;
 };
 
 const initialState = {
