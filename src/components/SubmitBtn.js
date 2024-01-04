@@ -1,3 +1,4 @@
+import { Button } from "react-bootstrap";
 import { useNavigation } from "react-router-dom";
 
 const SubmitBtn = ({ text }) => {
@@ -5,16 +6,21 @@ const SubmitBtn = ({ text }) => {
   const isSubmitting = navigation.state === "submitting";
 
   return (
-    <button type="submit" disabled={isSubmitting}>
+    <Button
+      type="submit"
+      className="mx-auto"
+      style={{ maxWidth: "80px" }}
+      disabled={isSubmitting}
+    >
       {isSubmitting ? (
         <>
-          <span></span>
+          <span className=""></span>
           sending...
         </>
       ) : (
         text || "submit"
       )}
-    </button>
+    </Button>
   );
 };
 export default SubmitBtn;

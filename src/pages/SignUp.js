@@ -44,29 +44,22 @@ export const action = async ({ request }) => {
 };
 
 const SignUp = () => {
-
-
   return (
-    <section className="">
-      <Form method="POST" className="">
-        <br />
-        <br />
-        <h1 className="font-bold	text-5xl">Register</h1>
-        <br />
-        <br />
-        <br />
-        <FormInput type="text" label="name" name="name" />
-        <FormInput type="email" label="email" name="email" />
-        <FormInput type="password" label="password" name="password" />
-        <br />
-        <div className="btn btn-primary">
+    <section className="container">
+      <Form method="POST" className="mt-5 p-4 border rounded">
+        <h1 className="font-bold text-5xl text-center mb-5">Register</h1>
+
+        <FormInput type="text" label="Name" name="name" />
+        <FormInput type="email" label="Email" name="email" />
+        <FormInput type="password" label="Password" name="password" />
+
+        <div className="d-grid gap-2 mt-4">
           <SubmitBtn text="SignUp" />
         </div>
-        <br />
-        <br />
-        <p className="text-center">
+
+        <p className="text-center mt-3">
           Already a member?
-          <Link to="/login" className="btn btn-error">
+          <Link to="/login" className="btn btn-outline-danger ms-2">
             Login
           </Link>
         </p>
