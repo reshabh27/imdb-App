@@ -52,14 +52,22 @@ const LandMovieCard = ({movie}) => {
       <div key={movie.id} className="mb-4">
         <div className="card">
           <img
-            src={movie.posterUrl} 
+            src={movie.posterUrl}
             className="card-img-top custom-card-img"
             alt={movie.title}
           />
           <div className="card-body">
             <h5 className="card-title">{movie.title}</h5>
             <p className="card-text">{movie.description}</p>
-            {/* You can add more details or buttons here */}
+            <p className="card-text">
+              <strong>Genres: </strong>
+              {/* {movie.genre.map((genre, index) => (
+                <span key={index} style={{ margin: '2px', padding: '5px', background: 'green', color: 'white' }}>
+                  {genre}
+                </span>
+              ))} */}
+              {movie.genre.join(", ")}
+            </p>
           </div>
           <div>
             <Button onClick={() => handleFavorite(movie)}>

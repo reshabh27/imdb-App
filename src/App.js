@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       {
         path: "addMovies",
         element: <AddMovies />,
-        loader: addMoviesLoader,
+        loader: addMoviesLoader(store),
       },
     ],
   },
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
 
 
 function App() {
-  
+
   return (
     <div className="App">
       <RouterProvider router={router} />
