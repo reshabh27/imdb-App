@@ -10,7 +10,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Landing from './pages/Landing';
 
-// import { loader as loginLoader } from "./pages/Login";
+import { loader as addMoviesLoader } from "./pages/AddMovies";
 // import { loader as signUpLoader } from "./pages/SignUp";
 
 import { action as signUpAction } from "./pages/SignUp";
@@ -30,13 +30,14 @@ const router = createBrowserRouter([
         element: <Landing />,
       },
       {
-        path: 'favorite',
-        element: <Favorite />
+        path: "favorite",
+        element: <Favorite />,
       },
       {
-        path:'addMovies',
-        element: <AddMovies />
-      }
+        path: "addMovies",
+        element: <AddMovies />,
+        loader: addMoviesLoader,
+      },
     ],
   },
   {
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
 
 
 function App() {
+  
   return (
     <div className="App">
       <RouterProvider router={router} />
