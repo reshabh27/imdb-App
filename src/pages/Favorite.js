@@ -36,7 +36,7 @@ const Favorite = () => {
     <div className="container mt-5">
       <h2>Your Favorite Movies</h2>
       <div className="row">
-        {favMovies.map((movie) => (
+        {favMovies?.map((movie) => (
           <div key={movie.id} className="col-md-4 mb-4">
             <Card>
               <Card.Img variant="top" src={movie.posterUrl} alt={movie.title} />

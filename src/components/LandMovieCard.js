@@ -1,10 +1,11 @@
-import React from 'react'
-import { Button } from "react-bootstrap";
+import React, { useState } from 'react'
 import { setFavForUser } from "../features/user/userSlice";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorite } from '../features/favMovieList/favMovieListSlice';
 import { customFetch } from '../utils';
+
+import { Button, Modal, Form } from "react-bootstrap";
 
 const LandMovieCard = ({movie}) => {
     
@@ -12,6 +13,13 @@ const LandMovieCard = ({movie}) => {
     const favMoviesFromState = useSelector((state) => state.favMovieListState.favoriteMoviesList);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    
+  const [review, setReview] = useState("");
+  const [rating, setRating] = useState(0);
+  
+  const [showModal, setShowModal] = useState(false);
+
 
 
     const handleFavorite = async (movie) => {
@@ -45,6 +53,25 @@ const LandMovieCard = ({movie}) => {
       }
     };
 
+    const handleShowModal = () => setShowModal(true);
+    const handleCloseModal = () => setShowModal(false);
+
+
+    const handleSaveReviewAndRating = async () => {
+      try {
+        await customFetch.post(`/posts/${movie.id}`, {
+          reviews: [],
+          ratings:[],
+        });
+
+        // Close the modal after successfully saving the review and rating
+        handleCloseModal();
+      } catch (error) {
+        console.error("Error saving review and rating:", error.message);
+      }
+    };
+
+
 
 
   return (
@@ -75,7 +102,44 @@ const LandMovieCard = ({movie}) => {
               Add to favorite
             </Button>
           </div>
-        </div>
+
+      {/* Reviews and Ratings Modal */}
+      <Button className='m-4' onClick={handleShowModal}>
+         Review and give rating
+      </Button>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Reviews and Ratings</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="review">
+              <Form.Label>Review:</Form.Label>
+              <Form.Control
+                as="textarea" rows={3} value={review}
+                onChange={(e) => setReview(e.target.value)}
+                />
+            </Form.Group>
+            <Form.Group controlId="rating">
+              <Form.Label>Rating:</Form.Label>
+              <Form.Control
+                type="number" min="0" max="5" step="1"
+                value={rating}
+                onChange={(e) => setRating(parseFloat(e.target.value))}
+                />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleSaveReviewAndRating}>
+            Submit review
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      </div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React from 'react'
 import { customFetch } from '../utils';
 import AddMoviesForm from '../components/AddMoviesForm';
 import { redirect } from 'react-router-dom';
+import AddGenreForm from '../components/AddGenreForm';
 
 export const loader = (store) => async() => {
   const user = store.getState().userState?.user;
@@ -11,7 +12,7 @@ export const loader = (store) => async() => {
   }
   
   const response = await customFetch("/posts");
-  console.log(response.data);
+  // console.log(response.data);
   return response?.data;
 };
 
@@ -21,6 +22,7 @@ const AddMovies = () => {
   return (
     <div>
       <AddMoviesForm />
+      <AddGenreForm />
     </div>
   );
 }

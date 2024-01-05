@@ -27,8 +27,10 @@ const Landing = () => {
       const movies = response.data || [];
       
       // Dispatch the setAllMovies action to update the state
-      dispatch(setInitialFavList(user.favMovie));
+      if(user)
+        dispatch(setInitialFavList(user.favMovie));
       dispatch(setAllMovies(movies));
+     setFilteredMovies(movies);
     } catch (error) {
       console.error("Error fetching initial movies:", error.message);
     }
@@ -57,11 +59,18 @@ const Landing = () => {
        );
      }
 
-     if (genreFilter) {
-       filteredResults = filteredResults.filter((movie) =>
-         movie.genre.includes(genreFilter.toLowerCase())
-       );
-     }
+    //  if (genreFilter) {
+    //    filteredResults = filteredResults.filter((movie) =>
+    //      movie.genre.includes(genreFilter.toLowerCase())
+    //    );
+    //  }
+    if (genreFilter) {
+      filteredResults = filteredResults.filter((movie) =>
+        movie.genre.some((genre) =>
+          genre.toLowerCase().includes(genreFilter.toLowerCase())
+        )
+      );
+    }
 
      if (ratingFilter) {
        filteredResults = filteredResults.filter((movie) =>
@@ -86,7 +95,7 @@ const Landing = () => {
         >
           <option value="">Select genre</option>
           {genreOption.map(gen => {
-            return <option value={gen}>{gen}</option>;
+            return <option value={gen.name}>{gen.name}</option>;
           })}
         </select>
         <input type="text" placeholder="Filter by IMDb rating"

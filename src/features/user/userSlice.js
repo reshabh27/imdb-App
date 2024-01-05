@@ -25,6 +25,7 @@ const userSlice = createSlice({
     logoutUser: (state) => {
       state.user = null;
       localStorage.removeItem("userIMDB");
+      localStorage.removeItem("allMovies");
     //   toast.error("you have logged out", {
     //     position: "top-center",
     //     autoClose: 2000,
