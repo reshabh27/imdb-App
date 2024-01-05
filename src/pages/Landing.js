@@ -38,6 +38,7 @@ const Landing = () => {
 
   const handleFavorite = async (movie) => {
 
+    //if user is not logged in then goto login page
     if(!user)
     {
       alert('please login first to add into favorites');
@@ -45,6 +46,7 @@ const Landing = () => {
       return;
     }
 
+    // if movie is already added then alert and wont add again
     const isAlreadyFavorited = favMoviesFromState.some(
       (favMovie) => favMovie.id === movie.id
     );
@@ -56,7 +58,6 @@ const Landing = () => {
 
     try {
       dispatch(addToFavorite(movie));
-      // let newFavMovies = [...user.favMovie, movie];
 
       // console.log(newFavMovies);
       dispatch(setFavForUser(movie));
