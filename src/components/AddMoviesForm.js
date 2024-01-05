@@ -46,6 +46,7 @@ const AddMoviesForm = () => {
   return (
     <div className="container mt-5">
       <h2>Add new movies</h2>
+      <br /><br /><br />
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
@@ -122,6 +123,7 @@ const AddMoviesForm = () => {
         </div>
 
         <SubmitBtn text="Add Movie" />
+        <br /><br /><br />
       </form>
     </div>
   );
