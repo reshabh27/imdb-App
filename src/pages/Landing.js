@@ -59,11 +59,6 @@ const Landing = () => {
        );
      }
 
-    //  if (genreFilter) {
-    //    filteredResults = filteredResults.filter((movie) =>
-    //      movie.genre.includes(genreFilter.toLowerCase())
-    //    );
-    //  }
     if (genreFilter) {
       filteredResults = filteredResults.filter((movie) =>
         movie.genre.some((genre) =>

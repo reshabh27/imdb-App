@@ -12,6 +12,3 @@ export const store = configureStore({
   },
 });
 
-
-// Dispatch the fetchInitialMovies action to fetch initial movies when the app starts
-// store.dispatch(fetchInitialMovies());
