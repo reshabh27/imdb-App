@@ -2,17 +2,14 @@ import React, { useState } from "react";
 import { setFavForUser } from "../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorite } from "../features/favMovieList/favMovieListSlice";
 import { customFetch } from "../utils";
 
 import { Button, Modal, Form } from "react-bootstrap";
 
+
 const LandMovieCard = ({ movie }) => {
   const user = useSelector((state) => state.userState.user);
-  const favMoviesFromState = useSelector(
-    (state) => state.favMovieListState.favoriteMoviesList
-  );
-  // const allMoviesFromState = useSelector((state) => state.allMovieState.allMoviesList);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -29,7 +26,8 @@ const LandMovieCard = ({ movie }) => {
     }
 
     // if movie is already added then alert and wont add again
-    const isAlreadyFavorited = favMoviesFromState.some(
+    // console.log(user.favMovie);
+    const isAlreadyFavorited = user.favMovie.some(
       (favMovie) => favMovie.id === movie.id
     );
 
@@ -39,11 +37,10 @@ const LandMovieCard = ({ movie }) => {
     }
 
     try {
-      dispatch(addToFavorite(movie));
       dispatch(setFavForUser(movie));
 
       await customFetch.patch(`/users/${user.id}`, {
-        favMovie: favMoviesFromState,
+        favMovie: user.favMovie,
       });
       alert("added to favorite")
     } catch (error) {
@@ -70,12 +67,14 @@ const LandMovieCard = ({ movie }) => {
         // If the user has already reviewed or rated, update the existing review or rating
         const updatedReviews = movie.reviews.map((review) =>
           review.userid === user.id
-            ? { id: user.id, comment: userreview , username:user.name}
+            ? { userid: user.id, comment: userreview, username: user.name }
             : review
         );
 
         const updatedRatings = movie.ratings.map((rating) =>
-          rating.userid === user.id ? { id: user.id, rate: userrating, username:user.name } : rating
+          rating.userid === user.id
+            ? { userid: user.id, rate: userrating, username: user.name }
+            : rating
         );
         // console.log(updatedRatings, updatedReviews);
         // Send a PATCH request to update the movie
@@ -94,7 +93,7 @@ const LandMovieCard = ({ movie }) => {
         const newRating = {
           userid: user.id,
           rate: userrating,
-          username : user.name
+          username: user.name,
         };
         // console.log(newReview,newRating);
 
@@ -136,14 +135,14 @@ const LandMovieCard = ({ movie }) => {
               ))}
             </p>
           </div>
-          <p className="card-text">
+          <div className="card-text">
               <strong style={{ width:'auto',margin: '2px', padding: '4px', background: 'green', color: 'white' }}>Reviews: </strong>
               <br />
               {movie.reviews.length ? movie.reviews.map((review, index) => (
                 <div key={index}><b>{review.username}</b> : {review.comment}</div>
               )) : "Not reviewed by anyone"}
-            </p>
-            <p className="card-text">
+            </div>
+            <div className="card-text">
               <strong style={{ width:'auto',margin: '2px', padding: '4px', background: 'green', color: 'white' }}>Ratings: </strong>
               <br />
               {
@@ -152,7 +151,7 @@ const LandMovieCard = ({ movie }) => {
               )) : "Not rated by anyone"
               }
               
-            </p>
+            </div>
           <div>
             <Button onClick={() => handleFavorite(movie)}>
               {" "}
@@ -172,22 +171,14 @@ const LandMovieCard = ({ movie }) => {
               <Form>
                 <Form.Group controlId="review">
                   <Form.Label>Review:</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    value={userreview}
+                  <Form.Control as="textarea" rows={3} value={userreview}
                     onChange={(e) => setUserReview(e.target.value)}
                   />
                 </Form.Group>
                 <Form.Group controlId="rating">
                   <Form.Label>Rating:</Form.Label>
-                  <Form.Control
-                    type="number"
-                    min="0"
-                    max="5"
-                    step="1"
-                    value={userrating}
-                    onChange={(e) => setUserRating(parseFloat(e.target.value))}
+                  <Form.Control type="number" min="0" max="5" step="1" value={userrating} 
+                  onChange={(e) => setUserRating(parseFloat(e.target.value))}
                   />
                 </Form.Group>
               </Form>

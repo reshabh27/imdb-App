@@ -1,7 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button } from "react-bootstrap";
-import { removeFromFavorites } from '../features/favMovieList/favMovieListSlice';
 import { customFetch } from '../utils';
 import { removeFavForUser } from '../features/user/userSlice';
 
@@ -18,16 +17,15 @@ const Favorite = () => {
       const updatedFavMovies = favMovies.filter((favMovie) => favMovie.id !== movie.id);
 
       // Dispatch action to update Redux state
-      dispatch(removeFromFavorites(movie));
       dispatch(removeFavForUser(movie));
 
       // Update server data
       await customFetch.patch(`/users/${user.id}`, { favMovie: updatedFavMovies });
-
+      alert('Movie removed from favorites successfully')
       console.log('Movie removed from favorites successfully');
     } catch (error) {
       console.error('Error removing movie from favorites:', error.message);
-      // Handle error, e.g., show an error message to the user
+      alert("there is an error");
     }
   }
 

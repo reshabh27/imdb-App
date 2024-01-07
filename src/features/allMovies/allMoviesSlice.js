@@ -1,5 +1,4 @@
 import { createSlice} from "@reduxjs/toolkit";
-// import { toast } from "react-toastify";
 
 const defaultState = {
   allMoviesList: [],
@@ -16,7 +15,6 @@ const allMovieSlice = createSlice({
   reducers: {
     // for users including admin
     addToAllMovies: (state, action) => {
-      // console.log(action.payload);
       state.allMoviesList.push(action.payload);
       state.numItemsInList = state.numItemsInList +1;
       localStorage.setItem("allMovies", JSON.stringify(state));
@@ -26,7 +24,6 @@ const allMovieSlice = createSlice({
     },
     setAllMovies: (state, action) => {
       // Set the initial movie list from the action payload
-      // console.log(action.payload);
       state.allMoviesList = action.payload;
       state.numItemsInList = action.payload.length;
   

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { toast } from "react-toastify";
 
 const getUserFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem("userIMDB")) || null;
@@ -17,19 +16,11 @@ const userSlice = createSlice({
       const user = { ...action.payload.user};
       state.user = user;
       localStorage.setItem("userIMDB", JSON.stringify(user));
-    //   toast.success("Welcome to the E-commerce website", {
-    //     position: "top-center",
-    //     autoClose: 2000,
-    //   });
     },
     logoutUser: (state) => {
       state.user = null;
       localStorage.removeItem("userIMDB");
       localStorage.removeItem("allMovies");
-    //   toast.error("you have logged out", {
-    //     position: "top-center",
-    //     autoClose: 2000,
-    //   });
     },
     setFavForUser : (state,action) => {
        const movieToAdd = action.payload;
@@ -37,7 +28,6 @@ const userSlice = createSlice({
          // Add the new movie to the favorite movies array
          state.user.favMovie.push(movieToAdd);
 
-         // You may want to update localStorage as well
          localStorage.setItem("userIMDB", JSON.stringify(state.user));
     },
     removeFavForUser : (state,action) => {
@@ -53,7 +43,6 @@ const userSlice = createSlice({
         // Update the favorite movies in the user state
         state.user.favMovie = updatedFavMovies;
         
-        // You may want to update localStorage as well
         localStorage.setItem("userIMDB", JSON.stringify(state.user));
       }
     },
