@@ -25,6 +25,7 @@ const AddGenreForm = () => {
       }
     } catch (error) {
       console.error("Error adding genre:", error.message);
+      alert("there is an error while adding genre");
     }
   };
 

@@ -7,6 +7,11 @@ import { customFetch } from "../utils";
 import { Button, Modal, Form } from "react-bootstrap";
 
 
+// import { render } from "@react-email/render";
+// import nodemailer from "nodemailer";
+// import { Email } from "./Email";
+
+
 const LandMovieCard = ({ movie }) => {
   const user = useSelector((state) => state.userState.user);
 

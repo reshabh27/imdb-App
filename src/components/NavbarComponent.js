@@ -7,7 +7,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 const NavbarComponent = () => {
-  // const cartData = useSelector((state) => state.cartState);
   const user = useSelector((state) => state.userState.user);
   // console.log(user);
   let canAddMovies =0;

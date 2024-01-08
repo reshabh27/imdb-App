@@ -1,17 +1,9 @@
 import React from "react";
 import { Form, Link, redirect } from "react-router-dom";
 import { customFetch } from "../utils";
-// import { toast } from "react-toastify";
 import { loginUser } from "../features/user/userSlice";
 import SubmitBtn from "../components/SubmitBtn";
 import FormInput from "../components/FormInput";
-
-
-// export const loader = async() => {
-//   const response = await customFetch("/users");
-//   console.log(response.data);
-//   return response?.data;
-// }
 
 
 
@@ -42,7 +34,7 @@ export const action = (store) => async ({ request }) => {
         // Email doesn't exist, handle the error or return null
         const errorMessage = "Invalid email or password";
         console.log(errorMessage);
-        // toast.error(errorMessage);
+        alert(errorMessage);
         return null;
       }
     } 

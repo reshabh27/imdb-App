@@ -7,9 +7,8 @@ import LandMovieCard from '../components/LandMovieCard';
 
 const Landing = () => {
 
-  const movieList = useSelector((state) => state.allMovieState.allMoviesList);
-  const [genreOption,setGenreOption] = useState([])
-
+   const movieList = useSelector((state) => state.allMovieState.allMoviesList);
+   const [genreOption,setGenreOption] = useState([])
    const [filteredMovies, setFilteredMovies] = useState(movieList);
    const [nameFilter, setNameFilter] = useState("");
    const [genreFilter, setGenreFilter] = useState("");
@@ -27,6 +26,7 @@ const Landing = () => {
       setFilteredMovies(movies);
     } catch (error) {
       console.error("Error fetching initial movies:", error.message);
+      alert("error fetching initial movies");
     }
   };
 
