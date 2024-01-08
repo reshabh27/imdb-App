@@ -142,6 +142,7 @@ const LandMovieCard = ({ movie }) => {
                 <div key={index}><b>{review.username}</b> : {review.comment}</div>
               )) : "Not reviewed by anyone"}
             </div>
+            <br />
             <div className="card-text">
               <strong style={{ width:'auto',margin: '2px', padding: '4px', background: 'green', color: 'white' }}>Ratings: </strong>
               <br />
@@ -150,8 +151,8 @@ const LandMovieCard = ({ movie }) => {
                 <div key={index}><b>{rating.username}</b> : {rating.rate} / 5</div>
               )) : "Not rated by anyone"
               }
-              
             </div>
+            <br />
           <div>
             <Button onClick={() => handleFavorite(movie)}>
               {" "}

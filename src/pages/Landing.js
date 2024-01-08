@@ -41,6 +41,17 @@ const Landing = () => {
   },[])
 
 
+  const filterMoviesByRating = (movies, minRating) => {
+    return movies.filter((movie) => {
+      // Calculate the average rating for the movie
+      const ratings = movie.ratings.map((rating) => rating.rate);
+      const averageRating =  ratings.length > 0 ? ratings.reduce((a, b) => a + b) / ratings.length : 0;
+
+      // Check if the average rating is greater than or equal to the minimum rating
+      return averageRating >= minRating;
+    });
+  };
+
   
    const handleFilter = () => {
      // Apply filters based on name, genre, and rating
@@ -61,9 +72,7 @@ const Landing = () => {
     }
 
      if (ratingFilter) {
-       filteredResults = filteredResults.filter((movie) =>
-         movie.ratings.includes(ratingFilter)
-       );
+       filteredResults = filterMoviesByRating(filteredResults, ratingFilter);
      }
 
      setFilteredMovies(filteredResults);

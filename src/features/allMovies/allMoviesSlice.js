@@ -16,7 +16,7 @@ const allMovieSlice = createSlice({
     // for users including admin
     addToAllMovies: (state, action) => {
       state.allMoviesList.push(action.payload);
-      state.numItemsInList = state.numItemsInList +1;
+      state.numItemsInList = state.allMoviesList.length;
       localStorage.setItem("allMovies", JSON.stringify(state));
     },
     removeFromAllMovies: (state, action) => {
