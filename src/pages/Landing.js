@@ -80,32 +80,37 @@ const Landing = () => {
 
 
   return (
-    <div className="container mt-5">
-      {/* filters */}
-      <div className="mb-3">
-        <input type="text" placeholder="Search by name"
-          value={nameFilter} onChange={(e) => setNameFilter(e.target.value)}
-        />
-        <select value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)}
-        >
-          <option value="">Select genre</option>
-          {genreOption.map(gen => {
-            return <option value={gen.name}>{gen.name}</option>;
-          })}
-        </select>
-        <input type="text" placeholder="Filter by IMDb rating"
-          value={ratingFilter} onChange={(e) => setRatingFilter(e.target.value)}
-        />
-        <button onClick={handleFilter}>Apply Filters</button>
-      </div>
+    <div className='landingbody'>
 
-      {/* movies card container */}
-      <div className="row ">
-        {filteredMovies?.map((movie) => (
-          <div className="col-md-4 mb-4">
-            <LandMovieCard key={movie.id} movie={movie} />
-          </div>
-        ))}
+      <div className="container pt-5">
+        {/* filters */}
+        <div className="mb-3">
+          <input type="text" placeholder="Search by name" className='m-2 p-2 rounded'
+            value={nameFilter} onChange={(e) => setNameFilter(e.target.value)}
+          />
+          <select value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)}
+            className='me-2 p-2 rounded'
+          >
+            <option value="">Select genre</option>
+            {genreOption.map(gen => {
+              return <option value={gen.name}>{gen.name}</option>;
+            })}
+          </select>
+          <input type="text" placeholder="Filter by IMDb rating"
+            value={ratingFilter} onChange={(e) => setRatingFilter(e.target.value)}
+            className='me-2 p-2 rounded'
+          />
+          <button className='applybtn p-2 rounded' onClick={handleFilter}>Apply Filters</button>
+        </div>
+            <br />
+        {/* movies card container */}
+        <div className="row ">
+          {filteredMovies?.map((movie) => (
+            <div className="col-md-4 mb-4">
+              <LandMovieCard key={movie.id} movie={movie} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

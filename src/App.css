@@ -40,3 +40,38 @@
 .light-green-button {
   background-color: rgb(1, 206, 1) !important;
 }
+
+
+
+
+/* landing */
+
+.landingbody{
+
+  background-image: linear-gradient(to bottom, #5a6371, #4a505f, #3a3f4e, #2c2d3d, #1e1d2d);
+  min-height: 100vh;
+}
+
+.applybtn{
+  background-color: rgb(0, 234, 255);
+}
+
+
+/* landmoviecard */
+
+.cardbtns{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* favorite */
+
+.favbody{
+
+  background-image: linear-gradient(to bottom, #5a6371, #4a505f, #3a3f4e, #2c2d3d, #1e1d2d);
+  min-height: 100vh;
+}
+
+
+

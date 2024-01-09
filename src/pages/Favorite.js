@@ -31,22 +31,54 @@ const Favorite = () => {
 
 
   return (
-    <div className="container mt-5">
-      <h2>Your Favorite Movies</h2>
-      <div className="row">
-        {favMovies?.map((movie) => (
-          <div key={movie.id} className="col-md-4 mb-4">
-            <Card>
-              <Card.Img variant="top" src={movie.posterUrl} alt={movie.title} />
-              <Card.Body>
-                <Card.Title>{movie.title}</Card.Title>
-                <Card.Text>{movie.description}</Card.Text>
-                {/* Add more details or buttons here */}
-                <Button onClick={()=> handleRemoveFav(movie)} variant="primary">Remove from favorites</Button>
-              </Card.Body>
-            </Card>
+    <div className="favbody">
+      <div className="container pt-5 text-white">
+        {user ? (
+          <h2>Your Favorite Movies</h2>
+        ) : (
+          "you must be logged in to add into favorites"
+        )}
+        <br /><br />
+        
+        <div className="row">
+          {favMovies?.map((movie) => (
+            <div key={movie.id} className="col-md-4 mb-4">
+              <div className="card">
+          <div className="row no-gutters">
+            <div className="col-md-5">
+              <img
+                src={movie.posterUrl}
+                className="card-img custom-card-img"
+                alt={movie.title}
+              />
+            </div>
+            <div className="col-md-7">
+              <div className="card-body">
+                <h5 className="card-title">{movie.title}</h5>
+                <p className="card-text">{movie.description}</p>
+                <p className="card-text">
+                  <strong
+                    style={{ width: "auto", margin: "2px", padding: "4px", background: "green",
+                      color: "white"}} >
+                    Genres:{" "}
+                  </strong>
+                  <br />
+                  {movie.genre.map((genre, index) => (
+                    <b style={{ margin: "3px" }} key={index}> {genre} </b>
+                  ))}
+                </p>
+              </div>
+            </div>
           </div>
-        ))}
+          <div className="card-footer">
+            <Button onClick={() => handleRemoveFav(movie)} variant="primary">
+              Remove from favorites
+            </Button>
+          </div>
+        </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
