@@ -11,6 +11,7 @@ const AddMoviesForm = () => {
     genre: [],
     cast: [],
     posterUrl: "",
+    releaseYear: "",
   });
   
 
@@ -36,20 +37,28 @@ const AddMoviesForm = () => {
       if (response.status === 201) {
         console.log("Form data submitted successfully");
         dispatch(addToAllMovies(response.data));
+        alert("Movie Succesfully added");
       } else {
         console.error("Error submitting form data:", response.statusText);
+        alert("error submiting the data")
       }
     } catch (error) {
       console.error("Error:", error.message);
+      alert("there is some error while adding movie");
     }
   };
 
   return (
-    <div className="container rounded" style={{backgroundColor:"white",width:"30%",minWidth:'275px'}}>
+    <div
+      className="container rounded"
+      style={{ backgroundColor: "white", width: "30%", minWidth: "275px" }}
+    >
       <div className="pt-5 mt-4">
         <strong className="h1">Add New Movies !</strong>
       </div>
-      <br /><br /><br />
+      <br />
+      <br />
+      <br />
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label h4">
@@ -115,6 +124,22 @@ const AddMoviesForm = () => {
         </div>
 
         <div className="mb-3">
+          <label htmlFor="releaseYear" className="form-label h4">
+            Original Release Year:
+          </label>
+          <input
+            type="text"
+            className="form-control w-50 m-auto"
+            id="releaseYear"
+            name="releaseYear"
+            value={formData.releaseYear}
+            onChange={handleChange}
+            placeholder="Enter Original Release Year"
+            required
+          />
+        </div>
+
+        <div className="mb-3">
           <label htmlFor="posterUrl" className="form-label h4">
             Poster URL:
           </label>
@@ -131,7 +156,9 @@ const AddMoviesForm = () => {
         </div>
 
         <BtnAddItems text="Add Movie" />
-        <br /><br /><br />
+        <br />
+        <br />
+        <br />
       </form>
     </div>
   );

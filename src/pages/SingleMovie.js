@@ -47,7 +47,7 @@ export const SingleMovie = () => {
             </p>
             <p>
               <h2 style={{ color: "#01ff01" }}>Original Release year:</h2>{" "}
-              <span className="opacity-75">2024</span>
+              <span className="opacity-75">{curMovie.releaseYear}</span>
             </p>
             <p>
               <h2 style={{ color: "#01ff01" }}>Rate Average:</h2>{" "}

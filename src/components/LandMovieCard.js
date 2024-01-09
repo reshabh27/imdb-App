@@ -115,10 +115,10 @@ const LandMovieCard = ({ movie }) => {
   };
 
   return (
-    <Link  className="movie-link" to={`/movies/${movie.id}`}>
+    <div>
       <div key={movie.id} className="mb-4">
         <div className="card">
-          <div className="row no-gutters">
+          <Link to={`/movies/${movie.id}`} className="row no-gutters movie-link">
             <div className="col-md-5">
               <img
                 src={movie.posterUrl}
@@ -141,7 +141,7 @@ const LandMovieCard = ({ movie }) => {
                 </p>
               </div>
             </div>
-          </div>
+          </Link>
           <div className="card-footer cardbtns">
             <Button onClick={() => handleFavorite(movie)}>
               {" "}
@@ -191,7 +191,7 @@ const LandMovieCard = ({ movie }) => {
             </Modal.Footer>
           </Modal>
       </div>
-    </Link>
+    </div>
   );
 };
 
