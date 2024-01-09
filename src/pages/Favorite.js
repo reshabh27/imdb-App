@@ -1,8 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { customFetch } from '../utils';
 import { removeFavForUser } from '../features/user/userSlice';
+import { Link } from 'react-router-dom';
 
 const Favorite = () => {
   const favMovies = useSelector((state) => state.userState?.user?.favMovie);
@@ -42,41 +43,41 @@ const Favorite = () => {
         
         <div className="row">
           {favMovies?.map((movie) => (
-            <div key={movie.id} className="col-md-4 mb-4">
+            <Link key={movie.id} to={`/movies/${movie.id}`} className="col-md-4 mb-4 movie-link">
               <div className="card">
-          <div className="row no-gutters">
-            <div className="col-md-5">
-              <img
-                src={movie.posterUrl}
-                className="card-img custom-card-img"
-                alt={movie.title}
-              />
-            </div>
-            <div className="col-md-7">
-              <div className="card-body">
-                <h5 className="card-title">{movie.title}</h5>
-                <p className="card-text">{movie.description}</p>
-                <p className="card-text">
-                  <strong
-                    style={{ width: "auto", margin: "2px", padding: "4px", background: "green",
-                      color: "white"}} >
-                    Genres:{" "}
-                  </strong>
-                  <br />
-                  {movie.genre.map((genre, index) => (
-                    <b style={{ margin: "3px" }} key={index}> {genre} </b>
-                  ))}
-                </p>
+                <div className="row no-gutters">
+                  <div className="col-md-5">
+                    <img
+                      src={movie.posterUrl}
+                      className="card-img custom-card-img"
+                      alt={movie.title}
+                    />
+                  </div>
+                  <div className="col-md-7">
+                    <div className="card-body">
+                      <h5 className="card-title">{movie.title}</h5>
+                      <p className="card-text">{movie.description}</p>
+                      <p className="card-text">
+                        <strong
+                          style={{ width: "auto", margin: "2px", padding: "4px", background: "green",
+                            color: "white"}} >
+                          Genres:{" "}
+                        </strong>
+                        <br />
+                        {movie.genre.map((genre, index) => (
+                          <b style={{ margin: "3px" }} key={index}> {genre} </b>
+                        ))}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="card-footer">
+                  <Button onClick={() => handleRemoveFav(movie)} variant="primary">
+                    Remove from favorites
+                  </Button>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="card-footer">
-            <Button onClick={() => handleRemoveFav(movie)} variant="primary">
-              Remove from favorites
-            </Button>
-          </div>
-        </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
