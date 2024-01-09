@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { customFetch } from "../utils";
+import BtnAddItems from "./BtnAddItems";
 
 const AddGenreForm = () => {
   const [newGenre, setNewGenre] = useState("");
@@ -30,18 +31,22 @@ const AddGenreForm = () => {
   };
 
   return (
-    <div>
-      <h3>Add New Genre</h3>
+    <div className="container mt-5 pt-5 rounded" style={{backgroundColor:"white",width:"30%",minWidth:'275px'}}>
+      <div className="mb-5">
+        <strong className="h1">Add New Genre</strong>
+      </div>
       <div>
-        <label htmlFor="newGenre">Genre Name:</label>
+        <label className="form-label h4" htmlFor="newGenre">Genre Name:</label>
         <input
           type="text"
           id="newGenre"
           value={newGenre}
+          className="form-control w-50 m-auto mb-4"
+          placeholder="New Genre"
           onChange={(e) => setNewGenre(e.target.value)}
         />
       </div>
-      <button onClick={handleAddGenre}>Add Genre</button>
+      <BtnAddItems text="Add Genre" onClick={handleAddGenre}/>
     </div>
   );
 };

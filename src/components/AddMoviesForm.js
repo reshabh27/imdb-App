@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import SubmitBtn from "./SubmitBtn";
 import { customFetch } from "../utils";
 import { useDispatch } from "react-redux";
 import { addToAllMovies } from "../features/allMovies/allMoviesSlice";
+import BtnAddItems from "./BtnAddItems";
 
 const AddMoviesForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +12,7 @@ const AddMoviesForm = () => {
     cast: [],
     posterUrl: "",
   });
+  
 
   const dispatch = useDispatch();
 
@@ -44,85 +45,92 @@ const AddMoviesForm = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Add new movies</h2>
+    <div className="container rounded" style={{backgroundColor:"white",width:"30%",minWidth:'275px'}}>
+      <div className="pt-5 mt-4">
+        <strong className="h1">Add New Movies !</strong>
+      </div>
       <br /><br /><br />
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="title" className="form-label">
+          <label htmlFor="title" className="form-label h4">
             Title:
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control w-50 m-auto"
             id="title"
             name="title"
             value={formData.title}
+            placeholder="Enter Movie Title"
             onChange={handleChange}
             required
           />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="description" className="form-label">
+          <label htmlFor="description" className="form-label h4">
             Description:
           </label>
           <textarea
-            className="form-control"
+            className="form-control w-50 m-auto"
             id="description"
             name="description"
             value={formData.description}
+            placeholder="Enter Movie Description"
             onChange={handleChange}
             required
           />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="genre" className="form-label">
-            Genre (comma-separated):
+          <label htmlFor="genre" className="form-label h4">
+            Genre:
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control w-50 m-auto"
             id="genre"
             name="genre"
             value={formData.genre.join(", ")}
             onChange={handleChange}
+            placeholder="Movie Genres(comma-separated)"
             required
           />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="cast" className="form-label">
-            Team (comma-separated):
+          <label htmlFor="cast" className="form-label h4">
+            Cast:
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control w-50 m-auto"
             id="cast"
             name="cast"
             value={formData.cast.join(", ")}
             onChange={handleChange}
+            placeholder="Movie Casts(comma-separated)"
             required
           />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="posterUrl" className="form-label">
+          <label htmlFor="posterUrl" className="form-label h4">
             Poster URL:
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control w-50 m-auto"
             id="posterUrl"
             name="posterUrl"
             value={formData.posterUrl}
             onChange={handleChange}
+            placeholder="Poster link"
             required
           />
         </div>
 
-        <SubmitBtn text="Add Movie" />
+        <BtnAddItems text="Add Movie" />
         <br /><br /><br />
       </form>
     </div>

@@ -20,7 +20,7 @@ export const loader = (store) => async() => {
 const AddMovies = () => {
   
   return (
-    <div>
+    <div className='pt-5 pb-5' style={{backgroundImage:"linear-gradient(to right top, #4b93fc, #6184ff, #8370ff, #a853fc, #cc12eb)"}}>
       <AddMoviesForm />
       <AddGenreForm />
     </div>

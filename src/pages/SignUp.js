@@ -33,26 +33,29 @@ export const action = async ({ request }) => {
 
 const SignUp = () => {
   return (
-    <section className="container">
-      <Form method="POST" className="mt-5 p-4 border rounded">
-        <h1 className="font-bold text-5xl text-center mb-5">Register</h1>
+    <div style={{backgroundImage: "linear-gradient(to right, #7bd0f9, #68c3ff, #78b1ff, #a299ff, #d277fc)",height:'100vh'}} className="p-5">
 
-        <FormInput type="text" label="Name" name="name" />
-        <FormInput type="email" label="Email" name="email" />
-        <FormInput type="password" label="Password" name="password" />
+      <section className="container bg-white rounded mt-5" style={{width:"30%",minWidth:'275px'}}>
+        <Form method="POST" className="p-4 rounded">
+          <h1 className="font-bold text-5xl text-center mb-5 mt-4 authheader">Register</h1>
 
-        <div className="d-grid gap-2 mt-4">
-          <SubmitBtn text="SignUp" />
-        </div>
+          <FormInput type="text" label="Username" name="name" />
+          <FormInput type="email" label="Email" name="email" />
+          <FormInput type="password" label="Password" name="password" />
 
-        <p className="text-center mt-3">
-          Already a member?
-          <Link to="/login" className="btn btn-outline-danger ms-2">
-            Login
-          </Link>
-        </p>
-      </Form>
-    </section>
+          <div className="d-grid gap-2 mt-5">
+            <SubmitBtn text="SignUp" />
+          </div>
+
+          <p className="mt-3">
+            Already a member?
+            <Link to="/login" className="btn btn-outline-danger ms-2">
+              Login
+            </Link>
+          </p>
+        </Form>
+      </section>
+    </div>
   );
 };
 

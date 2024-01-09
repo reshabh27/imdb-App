@@ -11,6 +11,32 @@
 
 
 
+.authheader {
+  font-size: 72px;
+  background: -webkit-linear-gradient(#000277, #5c0062);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 
 
+.gradient-placeholder {
+
+  /* Apply the gradient to the placeholder */
+  background: black;
+  -webkit-background-clip: text;
+}
+
+/* Override the color for the user input text */
+.gradient-placeholder::placeholder {
+  background: linear-gradient( rgb(93, 0, 160) 5em, rgb(130, 0, 153) 5em);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;/* Set the color for the placeholder text */
+}
+
+
+/* navbar  */
+
+.light-green-button {
+  background-color: rgb(1, 206, 1) !important;
+}

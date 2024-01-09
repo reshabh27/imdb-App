@@ -1,15 +1,13 @@
 const FormInput = ({ label, name, type, defaultValue, size }) => {
   return (
-    <div className=" place-items-center m-4">
-      <label htmlFor={name} className="label">
-        <span className="label-text capitalize">{label}</span>
-      </label>
+    <div className="place-items-center m-4">
       <input
         type={type}
         name={name}
         id={name}
         defaultValue={defaultValue}
-        className="input input-bordered w-full max-w-xs ms-2"
+        placeholder={label}
+        className="shadow-lg p-3 m-2 bg-body-tertiary rounded border border-dark-subtle gradient-placeholder"
       />
     </div>
   );

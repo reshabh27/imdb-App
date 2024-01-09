@@ -24,7 +24,7 @@ const NavbarComponent = () => {
   };
 
   return (
-    <Navbar expand="lg" bg="light" variant="light" className="mb-4">
+    <Navbar expand="lg" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand as={Link} to="/">
           IMDB Application
@@ -46,14 +46,16 @@ const NavbarComponent = () => {
               <Nav.Link as={Link} to="/addMovies">
                 Add movies
               </Nav.Link>
-            ) : ""}
+            ) : (
+              ""
+            )}
           </Nav>
         </Navbar.Collapse>
 
         <div className="ms-auto d-flex align-items-center">
           {user ? (
             <Dropdown className="ps-3">
-              <Dropdown.Toggle variant="light" id="dropdown-basic">
+              <Dropdown.Toggle variant="dark" id="dropdown-basic">
                 <Image
                   alt="Profile"
                   src="https://ionicframework.com/docs/img/demos/avatar.svg"
@@ -68,9 +70,11 @@ const NavbarComponent = () => {
                 <Dropdown.Item onClick={handleLogOut}>Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-          ) : 
-            <Button as={Link} to="/login">Login</Button>
-          }
+          ) : (
+            <Button as={Link} className="light-green-button" to="/login">
+              Login
+            </Button>
+          )}
         </div>
       </Container>
     </Navbar>
