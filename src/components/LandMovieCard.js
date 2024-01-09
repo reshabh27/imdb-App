@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { setFavForUser } from "../features/user/userSlice";
+import { setFavForUser, updateReviewAndComment } from "../features/user/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { customFetch } from "../utils";
 
 import { Button, Modal, Form } from "react-bootstrap";
+import { setAllMovies, updateMovieInAllMovies } from "../features/allMovies/allMoviesSlice";
 
 
 
@@ -67,22 +68,34 @@ const LandMovieCard = ({ movie }) => {
       if (hasReviewed || hasRated) {
         // If the user has already reviewed or rated, update the existing review or rating
         const updatedReviews = movie.reviews.map((review) =>
-          review.userid === user.id
-            ? { userid: user.id, comment: userreview, username: user.name }
-            : review
+        review.userid === user.id
+        ? { userid: user.id, comment: userreview, username: user.name }
+        : review
+        );
+        
+        const updatedRatings = movie.ratings.map((rating) =>
+        rating.userid === user.id
+        ? { userid: user.id, rate: userrating, username: user.name }
+        : rating
         );
 
-        const updatedRatings = movie.ratings.map((rating) =>
-          rating.userid === user.id
-            ? { userid: user.id, rate: userrating, username: user.name }
-            : rating
-        );
-        // console.log(updatedRatings, updatedReviews);
-        // Send a PATCH request to update the movie
-        await customFetch.patch(`/posts/${movie.id}`, {
-          reviews: updatedReviews,
-          ratings: updatedRatings,
-        });
+        if (userreview !== "")
+          await customFetch.patch(`/posts/${movie.id}`, {
+            reviews: updatedReviews
+          });
+        if (userrating !== 0)
+          await customFetch.patch(`/posts/${movie.id}`, {
+            ratings: updatedRatings,
+          });
+        
+
+        let updatedMovie = {...movie  };
+        if(userrating !== 0)
+          updatedMovie = { ...updatedMovie, ratings: updatedRatings };
+        if(userreview !== "" )
+          updatedMovie = {...updatedMovie, review:updatedReviews};
+        dispatch(updateMovieInAllMovies(updatedMovie));
+        dispatch(updateReviewAndComment(updatedMovie));
       } else {
         // If the user hasn't reviewed or rated, add a new review and rating
         const newReview = {
@@ -99,11 +112,26 @@ const LandMovieCard = ({ movie }) => {
         // console.log(newReview,newRating);
 
         // Send a PATCH request to update the movie
-        await customFetch.patch(`/posts/${movie.id}`, {
-          reviews: [...movie.reviews, newReview], // Add the new review to the existing array
-          ratings: [...movie.ratings, newRating], // Add the new rating to the existing array
-        });
+        if(userreview !== "")
+          await customFetch.patch(`/posts/${movie.id}`, {
+            reviews: [...movie.reviews, newReview], // Add the new review to the existing array
+             // Add the new rating to the existing array
+          });
+        if(userrating !== 0)
+          await customFetch.patch(`/posts/${movie.id}`, {
+            // Add the new review to the existing array
+            ratings: [...movie.ratings, newRating], // Add the new rating to the existing array
+          });
+
+        let updatedMovie = { ...movie};
+        if(userreview!== "")
+          updatedMovie  = {...updatedMovie,reviews: [...movie.reviews, newReview]}
+        if(userrating !== 0 )
+          updatedMovie = {...updatedMovie, ratings: [...movie.ratings, newRating]}
+        dispatch(updateMovieInAllMovies(updatedMovie));
+        dispatch(updateReviewAndComment(updatedMovie));
       }
+
 
       // Close the modal after successfully saving the review and rating
       handleCloseModal();

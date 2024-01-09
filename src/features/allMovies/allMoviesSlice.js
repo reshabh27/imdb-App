@@ -19,21 +19,33 @@ const allMovieSlice = createSlice({
       state.numItemsInList = state.allMoviesList.length;
       localStorage.setItem("allMovies", JSON.stringify(state));
     },
-    removeFromAllMovies: (state, action) => {
-      
-    },
+    removeFromAllMovies: (state, action) => {},
     setAllMovies: (state, action) => {
       // Set the initial movie list from the action payload
       state.allMoviesList = action.payload;
       state.numItemsInList = action.payload.length;
-  
+
       // Update local storage
       localStorage.setItem("allMovies", JSON.stringify(state));
+    },
+    updateMovieInAllMovies: (state, action) => {
+      const updatedMovie = action.payload;
+
+      // Find the index of the movie to be updated
+      const index = state.allMoviesList.findIndex(
+        (movie) => movie.id === updatedMovie.id
+      );
+
+      // If the movie is found, update it
+      if (index !== -1) {
+        state.allMoviesList[index] = updatedMovie;
+        localStorage.setItem("allMovies", JSON.stringify(state));
+      }
     },
   },
 });
 
-export const { addToAllMovies, removeFromAllMovies,setAllMovies } = allMovieSlice.actions;
+export const { addToAllMovies, removeFromAllMovies,setAllMovies, updateMovieInAllMovies } = allMovieSlice.actions;
 
 export default allMovieSlice.reducer;
 
