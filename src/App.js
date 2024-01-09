@@ -16,12 +16,15 @@ import { action as signUpAction } from "./pages/SignUp";
 import { action as loginAction } from "./pages/Login";
 import Favorite from './pages/Favorite';
 import AddMovies from './pages/AddMovies';
+import { SingleMovie } from './pages/SingleMovie';
+import ErrorElement from './components/ErrorElement';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
+    errorElement: <ErrorElement/>,
     children: [
       {
         index: true,
@@ -36,6 +39,14 @@ const router = createBrowserRouter([
         element: <AddMovies />,
         loader: addMoviesLoader(store),
       },
+      {
+        path: "movies",
+        element:<Landing />
+      },
+      {
+        path:"movies/:id",
+        element: <SingleMovie/>
+      }
     ],
   },
   {

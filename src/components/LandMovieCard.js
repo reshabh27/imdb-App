@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { setFavForUser } from "../features/user/userSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { customFetch } from "../utils";
 
@@ -115,83 +115,83 @@ const LandMovieCard = ({ movie }) => {
   };
 
   return (
-    <div>
-  <div key={movie.id} className="mb-4">
-    <div className="card">
-      <div className="row no-gutters">
-        <div className="col-md-5">
-          <img
-            src={movie.posterUrl}
-            className="card-img custom-card-img"
-            alt={movie.title}
-          />
-        </div>
-        <div className="col-md-7">
-          <div className="card-body">
-            <h5 className="card-title">{movie.title}</h5>
-            <p className="card-text">{movie.description}</p>
-            <p className="card-text">
-              <strong style={{ width: 'auto', margin: '2px', padding: '4px', background: 'green', color: 'white' }}>Genres: </strong>
-              <br />
-              {movie.genre.map((genre, index) => (
-                <b style={{ margin: '3px' }} key={index} >
-                  {genre}
-                </b>
-              ))}
-            </p>
+    <Link  className="movie-link" to={`/movies/${movie.id}`}>
+      <div key={movie.id} className="mb-4">
+        <div className="card">
+          <div className="row no-gutters">
+            <div className="col-md-5">
+              <img
+                src={movie.posterUrl}
+                className="card-img custom-card-img"
+                alt={movie.title}
+              />
+            </div>
+            <div className="col-md-7">
+              <div className="card-body">
+                <h5 className="card-title">{movie.title}</h5>
+                <p className="card-text">{movie.description}</p>
+                <p className="card-text">
+                  <strong className="rounded p-2" style={{ width: 'auto', background: '#ff7400', color: 'white' }}>Genres: </strong>
+                  <br />
+                  {movie.genre.map((genre, index) => (
+                    <b style={{ margin: '3px' }} key={index} >
+                      {genre}
+                    </b>
+                  ))}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="card-footer cardbtns">
+            <Button onClick={() => handleFavorite(movie)}>
+              {" "}
+              Add to favorite
+            </Button>
+            <Button className="ml-4" onClick={handleShowModal}>
+              Review and give rating
+            </Button>
           </div>
         </div>
+        {/* Reviews and Ratings Modal */}
+        <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>Reviews and Ratings</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Group controlId="review">
+                  <Form.Label>Review:</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    value={userreview}
+                    onChange={(e) => setUserReview(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group controlId="rating">
+                  <Form.Label>Rating:</Form.Label>
+                  <Form.Control
+                    type="number"
+                    min="0"
+                    max="5"
+                    step="1"
+                    value={userrating}
+                    onChange={(e) => setUserRating(parseFloat(e.target.value))}
+                  />
+                </Form.Group>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseModal}>
+                Cancel
+              </Button>
+              <Button variant="primary" onClick={handleSaveReviewAndRating}>
+                Submit review
+              </Button>
+            </Modal.Footer>
+          </Modal>
       </div>
-      <div className="card-footer cardbtns">
-        <Button onClick={() => handleFavorite(movie)}>
-          {" "}
-          Add to favorite
-        </Button>
-        <Button className="ml-4" onClick={handleShowModal}>
-          Review and give rating
-        </Button>
-      </div>
-    </div>
-    {/* Reviews and Ratings Modal */}
-    <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Reviews and Ratings</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="review">
-              <Form.Label>Review:</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                value={userreview}
-                onChange={(e) => setUserReview(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group controlId="rating">
-              <Form.Label>Rating:</Form.Label>
-              <Form.Control
-                type="number"
-                min="0"
-                max="5"
-                step="1"
-                value={userrating}
-                onChange={(e) => setUserRating(parseFloat(e.target.value))}
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleSaveReviewAndRating}>
-            Submit review
-          </Button>
-        </Modal.Footer>
-      </Modal>
-  </div>
-</div>
+    </Link>
   );
 };
 

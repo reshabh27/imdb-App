@@ -53,7 +53,12 @@
 }
 
 .applybtn{
-  background-color: rgb(0, 234, 255);
+  background-color: rgb(250, 71, 0);
+  color: white;
+}
+
+.filterinp {
+  border: 3px solid rgb(250, 71, 0);
 }
 
 
@@ -64,6 +69,11 @@
   justify-content: space-between;
 }
 
+.movie-link {
+  /* Your link styles here */
+  text-decoration: none; /* Remove default underline */
+  color: inherit; /* Inherit color from parent */
+}
 
 /* favorite */
 
@@ -73,5 +83,15 @@
   min-height: 100vh;
 }
 
+
+/* singlemovie */
+
+.singlemoviebody{
+
+  background-image: linear-gradient(to bottom, #5a6371, #4a505f, #3a3f4e, #2c2d3d, #1e1d2d);
+  min-height: 100vh;
+  color: white;
+  padding-top: 4rem;
+}
 
 
