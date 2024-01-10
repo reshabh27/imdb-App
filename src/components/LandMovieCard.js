@@ -3,21 +3,17 @@ import { setFavForUser, updateReviewAndComment } from "../features/user/userSlic
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { customFetch } from "../utils";
-
-import { Button, Modal, Form } from "react-bootstrap";
-import { setAllMovies, updateMovieInAllMovies } from "../features/allMovies/allMoviesSlice";
-
+import { Button } from "react-bootstrap";
+import { RevRateModal } from "./RevRateModal";
 
 
 const LandMovieCard = ({ movie }) => {
   const user = useSelector((state) => state.userState.user);
+  const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [userreview, setUserReview] = useState("");
-  const [userrating, setUserRating] = useState(0);
-  const [showModal, setShowModal] = useState(false);
 
   const handleFavorite = async (movie) => {
     //if user is not logged in then goto login page
@@ -27,8 +23,6 @@ const LandMovieCard = ({ movie }) => {
       return;
     }
 
-    // if movie is already added then alert and wont add again
-    // console.log(user.favMovie);
     const isAlreadyFavorited = user.favMovie.some(
       (favMovie) => favMovie.id === movie.id
     );
@@ -40,7 +34,6 @@ const LandMovieCard = ({ movie }) => {
 
     try {
       dispatch(setFavForUser(movie));
-
       await customFetch.patch(`/users/${user.id}`, {
         favMovie: user.favMovie,
       });
@@ -52,95 +45,7 @@ const LandMovieCard = ({ movie }) => {
   };
 
   const handleShowModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
 
-
-  const handleSaveReviewAndRating = async () => {
-    try {
-      // Check if the user has already reviewed and rated the movie
-      const hasReviewed = movie.reviews.some(
-        (review) => review.userid === user.id
-      );
-      const hasRated = movie.ratings.some(
-        (rating) => rating.userid === user.id
-      );
-
-      if (hasReviewed || hasRated) {
-        // If the user has already reviewed or rated, update the existing review or rating
-        const updatedReviews = movie.reviews.map((review) =>
-        review.userid === user.id
-        ? { userid: user.id, comment: userreview, username: user.name }
-        : review
-        );
-        
-        const updatedRatings = movie.ratings.map((rating) =>
-        rating.userid === user.id
-        ? { userid: user.id, rate: userrating, username: user.name }
-        : rating
-        );
-
-        if (userreview !== "")
-          await customFetch.patch(`/posts/${movie.id}`, {
-            reviews: updatedReviews
-          });
-        if (userrating !== 0)
-          await customFetch.patch(`/posts/${movie.id}`, {
-            ratings: updatedRatings,
-          });
-        
-
-        let updatedMovie = {...movie  };
-        if(userrating !== 0)
-          updatedMovie = { ...updatedMovie, ratings: updatedRatings };
-        if(userreview !== "" )
-          updatedMovie = {...updatedMovie, review:updatedReviews};
-        dispatch(updateMovieInAllMovies(updatedMovie));
-        dispatch(updateReviewAndComment(updatedMovie));
-      } else {
-        // If the user hasn't reviewed or rated, add a new review and rating
-        const newReview = {
-          userid: user.id,
-          comment: userreview,
-          username: user.name,
-        };
-
-        const newRating = {
-          userid: user.id,
-          rate: userrating,
-          username: user.name,
-        };
-        // console.log(newReview,newRating);
-
-        // Send a PATCH request to update the movie
-        if(userreview !== "")
-          await customFetch.patch(`/posts/${movie.id}`, {
-            reviews: [...movie.reviews, newReview], // Add the new review to the existing array
-             // Add the new rating to the existing array
-          });
-        if(userrating !== 0)
-          await customFetch.patch(`/posts/${movie.id}`, {
-            // Add the new review to the existing array
-            ratings: [...movie.ratings, newRating], // Add the new rating to the existing array
-          });
-
-        let updatedMovie = { ...movie};
-        if(userreview!== "")
-          updatedMovie  = {...updatedMovie,reviews: [...movie.reviews, newReview]}
-        if(userrating !== 0 )
-          updatedMovie = {...updatedMovie, ratings: [...movie.ratings, newRating]}
-        dispatch(updateMovieInAllMovies(updatedMovie));
-        dispatch(updateReviewAndComment(updatedMovie));
-      }
-
-
-      // Close the modal after successfully saving the review and rating
-      handleCloseModal();
-      alert("succesfully submited rating and review");
-      setUserReview("");
-    } catch (error) {
-      console.error("Error saving review and rating:", error.message);
-    }
-  };
 
   return (
     <div>
@@ -180,44 +85,10 @@ const LandMovieCard = ({ movie }) => {
             </Button>
           </div>
         </div>
+
         {/* Reviews and Ratings Modal */}
-        <Modal show={showModal} onHide={handleCloseModal}>
-            <Modal.Header closeButton>
-              <Modal.Title>Reviews and Ratings</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form>
-                <Form.Group controlId="review">
-                  <Form.Label>Review:</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    value={userreview}
-                    onChange={(e) => setUserReview(e.target.value)}
-                  />
-                </Form.Group>
-                <Form.Group controlId="rating">
-                  <Form.Label>Rating:</Form.Label>
-                  <Form.Control
-                    type="number"
-                    min="0"
-                    max="5"
-                    step="1"
-                    value={userrating}
-                    onChange={(e) => setUserRating(parseFloat(e.target.value))}
-                  />
-                </Form.Group>
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleCloseModal}>
-                Cancel
-              </Button>
-              <Button variant="primary" onClick={handleSaveReviewAndRating}>
-                Submit review
-              </Button>
-            </Modal.Footer>
-          </Modal>
+        <RevRateModal movie={movie} showModal={showModal} setShowModal={setShowModal}/>
+
       </div>
     </div>
   );
