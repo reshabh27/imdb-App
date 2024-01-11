@@ -35,7 +35,6 @@ const AddMoviesForm = () => {
       const response = await customFetch.post("/posts", { ...formData });
 
       if (response.status === 201) {
-        console.log("Form data submitted successfully");
         dispatch(addToAllMovies(response.data));
         alert("Movie Succesfully added");
       } else {
@@ -51,28 +50,22 @@ const AddMoviesForm = () => {
   return (
     <div
       className="container rounded"
-      style={{ backgroundColor: "white", width: "30%", minWidth: "275px" }}
+      style={{ backgroundColor: "white", width: "30%", minWidth: "275px" }} 
     >
       <div className="pt-5 mt-4">
         <strong className="h1">Add New Movies !</strong>
       </div>
-      <br />
-      <br />
-      <br />
+      <br /> <br /> <br />
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label h4">
             Title:
           </label>
           <input
-            type="text"
-            className="form-control w-50 m-auto"
-            id="title"
-            name="title"
-            value={formData.title}
-            placeholder="Enter Movie Title"
-            onChange={handleChange}
-            required
+            type="text" className="form-control w-50 m-auto"
+            id="title" name="title"
+            value={formData.title} placeholder="Enter Movie Title"
+            onChange={handleChange} required
           />
         </div>
 
@@ -81,12 +74,9 @@ const AddMoviesForm = () => {
             Description:
           </label>
           <textarea
-            className="form-control w-50 m-auto"
-            id="description"
-            name="description"
-            value={formData.description}
-            placeholder="Enter Movie Description"
-            onChange={handleChange}
+            className="form-control w-50 m-auto" id="description"
+            name="description" value={formData.description}
+            placeholder="Enter Movie Description" onChange={handleChange}
             required
           />
         </div>
@@ -96,14 +86,10 @@ const AddMoviesForm = () => {
             Genre:
           </label>
           <input
-            type="text"
-            className="form-control w-50 m-auto"
-            id="genre"
-            name="genre"
-            value={formData.genre.join(", ")}
-            onChange={handleChange}
-            placeholder="Movie Genres(comma-separated)"
-            required
+            type="text" className="form-control w-50 m-auto"
+            id="genre" name="genre"
+            value={formData.genre.join(", ")} onChange={handleChange}
+            placeholder="Movie Genres(comma-separated)" required
           />
         </div>
 
@@ -112,14 +98,10 @@ const AddMoviesForm = () => {
             Cast:
           </label>
           <input
-            type="text"
-            className="form-control w-50 m-auto"
-            id="cast"
-            name="cast"
-            value={formData.cast.join(", ")}
-            onChange={handleChange}
-            placeholder="Movie Casts(comma-separated)"
-            required
+            type="text" className="form-control w-50 m-auto"
+            id="cast" name="cast"
+            value={formData.cast.join(", ")} onChange={handleChange}
+            placeholder="Movie Casts(comma-separated)" required
           />
         </div>
 
@@ -128,14 +110,10 @@ const AddMoviesForm = () => {
             Original Release Year:
           </label>
           <input
-            type="text"
-            className="form-control w-50 m-auto"
-            id="releaseYear"
-            name="releaseYear"
-            value={formData.releaseYear}
-            onChange={handleChange}
-            placeholder="Enter Original Release Year"
-            required
+            type="text" className="form-control w-50 m-auto"
+            id="releaseYear" name="releaseYear"
+            value={formData.releaseYear} onChange={handleChange}
+            placeholder="Enter Original Release Year" required
           />
         </div>
 
@@ -144,21 +122,15 @@ const AddMoviesForm = () => {
             Poster URL:
           </label>
           <input
-            type="text"
-            className="form-control w-50 m-auto"
-            id="posterUrl"
-            name="posterUrl"
-            value={formData.posterUrl}
-            onChange={handleChange}
-            placeholder="Poster link"
-            required
+            type="text" className="form-control w-50 m-auto"
+            id="posterUrl" name="posterUrl"
+            value={formData.posterUrl} onChange={handleChange}
+            placeholder="Poster link" required
           />
         </div>
 
         <BtnAddItems text="Add Movie" />
-        <br />
-        <br />
-        <br />
+        <br /> <br /> <br />
       </form>
     </div>
   );
