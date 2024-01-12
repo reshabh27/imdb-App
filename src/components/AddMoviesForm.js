@@ -3,6 +3,7 @@ import { customFetch } from "../utils";
 import { useDispatch } from "react-redux";
 import { addToAllMovies } from "../features/allMovies/allMoviesSlice";
 import BtnAddItems from "./BtnAddItems";
+import { AddMoviesFormInput } from "./AddMoviesFormInput";
 
 const AddMoviesForm = () => {
   const [formData, setFormData] = useState({
@@ -57,77 +58,28 @@ const AddMoviesForm = () => {
       </div>
       <br /> <br /> <br />
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="title" className="form-label h4">
-            Title:
-          </label>
-          <input
-            type="text" className="form-control w-50 m-auto"
-            id="title" name="title"
-            value={formData.title} placeholder="Enter Movie Title"
-            onChange={handleChange} required
-          />
-        </div>
+        <AddMoviesFormInput inpId="title" pHolder="Enter Movie Title" text="Title" 
+        fieldValue={formData.title} handleChange={handleChange} />
 
         <div className="mb-3">
-          <label htmlFor="description" className="form-label h4">
-            Description:
-          </label>
+          <label htmlFor="description" className="form-label h4"> Description: </label>
           <textarea
-            className="form-control w-50 m-auto" id="description"
-            name="description" value={formData.description}
-            placeholder="Enter Movie Description" onChange={handleChange}
-            required
+            className="form-control w-50 m-auto" id="description" name="description" value={formData.description}
+            placeholder="Enter Movie Description" onChange={handleChange} required
           />
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="genre" className="form-label h4">
-            Genre:
-          </label>
-          <input
-            type="text" className="form-control w-50 m-auto"
-            id="genre" name="genre"
-            value={formData.genre.join(", ")} onChange={handleChange}
-            placeholder="Movie Genres(comma-separated)" required
-          />
-        </div>
+        <AddMoviesFormInput inpId="genre" pHolder="Movie Genres(comma-separated)" text="Genre" 
+        fieldValue={formData.genre.join(", ")} handleChange={handleChange} />
 
-        <div className="mb-3">
-          <label htmlFor="cast" className="form-label h4">
-            Cast:
-          </label>
-          <input
-            type="text" className="form-control w-50 m-auto"
-            id="cast" name="cast"
-            value={formData.cast.join(", ")} onChange={handleChange}
-            placeholder="Movie Casts(comma-separated)" required
-          />
-        </div>
+        <AddMoviesFormInput inpId="cast" pHolder="Movie Casts(comma-separated)" text="Cast" 
+        fieldValue={formData.cast.join(", ")} handleChange={handleChange} />
 
-        <div className="mb-3">
-          <label htmlFor="releaseYear" className="form-label h4">
-            Original Release Year:
-          </label>
-          <input
-            type="text" className="form-control w-50 m-auto"
-            id="releaseYear" name="releaseYear"
-            value={formData.releaseYear} onChange={handleChange}
-            placeholder="Enter Original Release Year" required
-          />
-        </div>
+        <AddMoviesFormInput inpId="releaseYear" pHolder="Enter Original Release Year" 
+        text="Original Release Year" fieldValue={formData.releaseYear} handleChange={handleChange} />
 
-        <div className="mb-3">
-          <label htmlFor="posterUrl" className="form-label h4">
-            Poster URL:
-          </label>
-          <input
-            type="text" className="form-control w-50 m-auto"
-            id="posterUrl" name="posterUrl"
-            value={formData.posterUrl} onChange={handleChange}
-            placeholder="Poster link" required
-          />
-        </div>
+        <AddMoviesFormInput inpId="posterUrl" pHolder="Poster link" text="Poster URL" 
+        fieldValue={formData.posterUrl} handleChange={handleChange} />
 
         <BtnAddItems text="Add Movie" />
         <br /> <br /> <br />
