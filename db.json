@@ -1,0 +1,431 @@
+{
+  "posts": [
+    {
+      "title": "The Shawshank Redemption",
+      "posterUrl": "https://m.media-amazon.com/images/I/61-vQDr7ecL._AC_UF1000,1000_QL80_.jpg",
+      "description": "Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, redemption through basic compassion.",
+      "genre": [
+        "Thriller",
+        "Crime"
+      ],
+      "cast": [
+        "Tim Robbins",
+        "Morgan Freeman",
+        "Bob Gunton",
+        "William Sadler"
+      ],
+      "reviews": [
+        {
+          "userid": 1,
+          "comment": "good movie",
+          "username": "reshabh"
+        },
+        {
+          "userid": 4,
+          "comment": "I have also watched it. It is a good movie.",
+          "username": "creator"
+        }
+      ],
+      "ratings": [
+        {
+          "userid": 1,
+          "rate": 5,
+          "username": "reshabh"
+        },
+        {
+          "userid": 4,
+          "rate": 5,
+          "username": "creator"
+        }
+      ],
+      "releaseYear": "1994",
+      "id": 1
+    },
+    {
+      "title": "The Dark Knight",
+      "posterUrl": "https://i.scdn.co/image/ab67616d0000b2739ca20352ead0cc8dccdf7951",
+      "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+      "genre": [
+        "horror",
+        "comedy",
+        "romance",
+        "thriller"
+      ],
+      "cast": [
+        "Christian Bale",
+        "Heath Ledger",
+        "Aaron Eckhart",
+        "Maggie Gyllenhaal",
+        "Morgan Freeman"
+      ],
+      "reviews": [
+        {
+          "userid": 1,
+          "comment": "nice movie",
+          "username": "reshabh"
+        },
+        {
+          "userid": 4,
+          "comment": "good things",
+          "username": "creator"
+        }
+      ],
+      "ratings": [
+        {
+          "userid": 1,
+          "rate": 9,
+          "username": "reshabh"
+        },
+        {
+          "userid": 4,
+          "rate": 4,
+          "username": "creator"
+        }
+      ],
+      "releaseYear": "2008",
+      "id": 2
+    },
+    {
+      "title": "The Godfather",
+      "description": "Don Vito Corleone, head of a mafia family, decides to hand over his empire to his youngest son Michael. However, his decision unintentionally puts the lives of his loved ones in grave danger.",
+      "genre": [
+        "Mystery",
+        "Crime"
+      ],
+      "cast": [
+        "Marlon Brando",
+        "Al Pacino",
+        "James Caan"
+      ],
+      "posterUrl": "https://upload.wikimedia.org/wikipedia/en/a/af/The_Godfather%2C_The_Game.jpg",
+      "reviews": [
+        {
+          "userid": 2,
+          "comment": "good movie for mystry lovers",
+          "username": "user1"
+        },
+        {
+          "userid": 1,
+          "comment": "good",
+          "username": "reshabh"
+        },
+        {
+          "userid": 4,
+          "comment": "noice",
+          "username": "creator"
+        }
+      ],
+      "ratings": [
+        {
+          "userid": 2,
+          "rate": 4,
+          "username": "user1"
+        },
+        {
+          "userid": 1,
+          "rate": 10,
+          "username": "reshabh"
+        },
+        {
+          "userid": 4,
+          "rate": 4,
+          "username": "creator"
+        }
+      ],
+      "releaseYear": "1972",
+      "id": 5
+    },
+    {
+      "title": "Inception",
+      "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
+      "genre": [
+        "Action",
+        "Sci-fi"
+      ],
+      "cast": [
+        "Leonardo DiCaprio",
+        "Joseph Gordon-Levitt",
+        "Elliot Page",
+        "Cillian Murphy"
+      ],
+      "posterUrl": "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p7825626_p_v8_af.jpg",
+      "reviews": [
+        {
+          "userid": 1,
+          "comment": "nice",
+          "username": "reshabh"
+        }
+      ],
+      "ratings": [
+        {
+          "userid": 1,
+          "rate": 4,
+          "username": "reshabh"
+        }
+      ],
+      "releaseYear": "2010",
+      "id": 6
+    },
+    {
+      "title": "3 Idiots",
+      "description": "Two friends are searching for their long lost companion. They revisit their college days and recall the memories of their friend who inspired them to think differently, even as the rest of the world called them \"idiots\"",
+      "genre": [
+        "Comedy",
+        "Romance"
+      ],
+      "cast": [
+        "Aamir Khan",
+        "Madhavan",
+        "Sharman Joshi"
+      ],
+      "posterUrl": "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p7951929_p_v8_aa.jpg",
+      "reviews": [],
+      "ratings": [],
+      "releaseYear": "2009",
+      "id": 7
+    },
+    {
+      "title": "The Wolf of Wall Street",
+      "description": "Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.",
+      "genre": [
+        "Crime",
+        "Comedy"
+      ],
+      "cast": [
+        "Leonardo DiCaprio",
+        "Jonah Hill",
+        "Margot Robbie",
+        "Matthew McConaughey"
+      ],
+      "posterUrl": "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p9991602_p_v12_aj.jpg",
+      "reviews": [],
+      "releaseYear": "2013",
+      "ratings": [],
+      "id": 8
+    },
+    {
+      "title": "Dangal",
+      "description": "Former wrestler Mahavir Singh Phogat and his two wrestler daughters struggle towards glory at the Commonwealth Games in the face of societal oppression.",
+      "genre": [
+        "Sport",
+        "Action"
+      ],
+      "cast": [
+        "Aamir Khan",
+        "Sakshi Tanwar",
+        "Fatima Sana Shaikh",
+        "Sanya Malhotra"
+      ],
+      "posterUrl": "https://m.media-amazon.com/images/M/MV5BMTQ4MzQzMzM2Nl5BMl5BanBnXkFtZTgwMTQ1NzU3MDI@._V1_FMjpg_UX1000_.jpg",
+      "reviews": [],
+      "releaseYear": "2016",
+      "ratings": [],
+      "id": 9
+    },
+    {
+      "title": "Sita Ramam",
+      "description": "An orphan soldier, Lieutenant Ram's life changes, after he gets a letter from a girl named Sita. He meets her and love blossoms between them. When he comes back to his camp in Kashmir,After he gets caught in jail, he sends a letter to Sita which won't reach her.",
+      "genre": [
+        "Romance",
+        "Action",
+        "Mystery"
+      ],
+      "cast": [
+        "Dulquer Salmaan",
+        "Mrunal Thakur",
+        "Rashmika Mandanna",
+        "Sumanth"
+      ],
+      "posterUrl": "https://image.tmdb.org/t/p/w500/g3hk2wEeIsTGhh7JvK8yWFVR7ue.jpg",
+      "releaseYear": "2022",
+      "reviews": [],
+      "ratings": [],
+      "id": 10
+    },
+    {
+      "title": "'96",
+      "description": "A rush of nostalgia engulfs a travel photographer after he visits his school. However, destiny reunites him with his childhood sweetheart at a school reunion with his friends.",
+      "genre": [
+        "Romance",
+        "Drama"
+      ],
+      "cast": [
+        "Vijay Sethupathi",
+        "Adithya Bhaskar",
+        "Trisha Krishnan",
+        "Devadarshini Chetan"
+      ],
+      "posterUrl": "https://m.media-amazon.com/images/M/MV5BYzY0OTVhZTMtYjAzNy00ODYzLTkxMzUtZmY2MWRlNTE1N2UyXkEyXkFqcGdeQXVyMTA4NjE0NjEy._V1_.jpg",
+      "releaseYear": "2018",
+      "reviews": [],
+      "ratings": [],
+      "id": 11
+    }
+  ],
+  "users": [
+    {
+      "name": "reshabh",
+      "email": "reshabh@admin.com",
+      "password": "admin123",
+      "role": "Admin",
+      "favMovie": [
+        {
+          "title": "The Dark Knight",
+          "posterUrl": "https://i.scdn.co/image/ab67616d0000b2739ca20352ead0cc8dccdf7951",
+          "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+          "genre": [
+            "horror",
+            "comedy",
+            "romance",
+            "thriller"
+          ],
+          "cast": [
+            "Christian Bale",
+            "Heath Ledger",
+            "Aaron Eckhart",
+            "Maggie Gyllenhaal",
+            "Morgan Freeman"
+          ],
+          "reviews": [
+            {
+              "userid": 1,
+              "comment": "hey",
+              "username": "reshabh"
+            },
+            {
+              "userid": 4,
+              "comment": "good things",
+              "username": "creator"
+            }
+          ],
+          "ratings": [
+            {
+              "userid": 1,
+              "rate": 4,
+              "username": "reshabh"
+            },
+            {
+              "userid": 4,
+              "rate": 4,
+              "username": "creator"
+            }
+          ],
+          "id": 2,
+          "review": [
+            {
+              "userid": 1,
+              "comment": "nice movie",
+              "username": "reshabh"
+            },
+            {
+              "userid": 4,
+              "comment": "good things",
+              "username": "creator"
+            }
+          ]
+        },
+        {
+          "title": "Sita Ramam",
+          "description": "An orphan soldier, Lieutenant Ram's life changes, after he gets a letter from a girl named Sita. He meets her and love blossoms between them. When he comes back to his camp in Kashmir,After he gets caught in jail, he sends a letter to Sita which won't reach her.",
+          "genre": [
+            "Romance",
+            "Action",
+            "Mystery"
+          ],
+          "cast": [
+            "Dulquer Salmaan",
+            "Mrunal Thakur",
+            "Rashmika Mandanna",
+            "Sumanth"
+          ],
+          "posterUrl": "https://image.tmdb.org/t/p/w500/g3hk2wEeIsTGhh7JvK8yWFVR7ue.jpg",
+          "releaseYear": "2022",
+          "reviews": [],
+          "ratings": [],
+          "id": 10
+        }
+      ],
+      "id": 1
+    },
+    {
+      "name": "user1",
+      "email": "user1@gmail.com",
+      "password": "hello123",
+      "role": "user",
+      "favMovie": [
+        {
+          "title": "The Dark Knight",
+          "posterUrl": "https://i.scdn.co/image/ab67616d0000b2739ca20352ead0cc8dccdf7951",
+          "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+          "genre": [
+            "horror",
+            "comedy",
+            "romance",
+            "thriller"
+          ],
+          "cast": [
+            "Christian Bale",
+            "Heath Ledger",
+            "Aaron Eckhart",
+            "Maggie Gyllenhaal",
+            "Morgan Freeman"
+          ],
+          "reviews": [],
+          "ratings": [],
+          "id": 2
+        }
+      ],
+      "id": 2
+    },
+    {
+      "name": "teamx",
+      "email": "user2@gmail.com",
+      "password": "qwertyuiop",
+      "role": "user",
+      "favMovie": [],
+      "id": 3
+    },
+    {
+      "name": "creator",
+      "email": "hrkabadi@gmail.com",
+      "password": "therealcreator",
+      "role": "user",
+      "favMovie": [],
+      "id": 4
+    }
+  ],
+  "genres": [
+    {
+      "id": 1,
+      "name": "horror"
+    },
+    {
+      "id": 2,
+      "name": "comedy"
+    },
+    {
+      "id": 4,
+      "name": "thriller"
+    },
+    {
+      "id": 5,
+      "name": "crime"
+    },
+    {
+      "id": 6,
+      "name": "mystery"
+    },
+    {
+      "id": 7,
+      "name": "sci-fi"
+    },
+    {
+      "id": 8,
+      "name": "romance"
+    },
+    {
+      "id": 9,
+      "name": "sport"
+    }
+  ]
+}
