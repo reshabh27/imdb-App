@@ -22,8 +22,8 @@ const LandMovieCard = ({ movie }) => {
       navigate("/login");
       return;
     }
-
-    const isAlreadyFavorited = user.favMovie.some(
+    console.log(user);
+    const isAlreadyFavorited = user?.favMovie?.some(
       (favMovie) => favMovie.id === movie.id
     );
 
@@ -34,9 +34,11 @@ const LandMovieCard = ({ movie }) => {
 
     try {
       dispatch(setFavForUser(movie));
-      await customFetch.patch(`/users/${user.id}`, {
+      // console.log(user);
+      const res = await customFetch.patch(`/users/${user.id}.json`, {
         favMovie: user.favMovie,
       });
+      console.log(res);
       alert("added to favorite")
     } catch (error) {
       console.error("Error adding to favorites:", error.message);
@@ -54,22 +56,20 @@ const LandMovieCard = ({ movie }) => {
           <Link to={`/movies/${movie.id}`} className="row no-gutters movie-link">
             <div className="col-md-5">
               <img
-                src={movie.posterUrl}
+                src={movie?.posterUrl}
                 className="card-img custom-card-img"
-                alt={movie.title}
+                alt={movie?.title}
               />
             </div>
             <div className="col-md-7">
               <div className="card-body">
-                <h5 className="card-title">{movie.title}</h5>
-                <p className="card-text">{movie.description}</p>
+                <h5 className="card-title">{movie?.title}</h5>
+                <p className="card-text">{movie?.description}</p>
                 <p className="card-text">
                   <strong className="rounded p-2" style={{ width: 'auto', background: '#ff7400', color: 'white' }}>Genres: </strong>
                   <br />
-                  {movie.genre.map((genre, index) => (
-                    <b style={{ margin: '3px' }} key={index} >
-                      {genre}
-                    </b>
+                  {movie.genre?.map((genre, index) => (
+                    <b style={{ margin: '3px' }} key={index} > {genre} </b>
                   ))}
                 </p>
               </div>

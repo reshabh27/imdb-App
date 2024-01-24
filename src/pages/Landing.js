@@ -18,9 +18,11 @@ const Landing = () => {
 
   const fetchInitialMovies = async () => {
     try {
-      const response = await customFetch("/posts");
-      const movies = response.data || [];
-      
+      const response = await customFetch("/posts.json");
+      // console.log(response);
+       const movies = Object.keys(response?.data).map( (key) => response.data[key]);
+
+      // console.log(movies);
       // Dispatch the setAllMovies action to update the state
       dispatch(setAllMovies(movies));
       setFilteredMovies(movies);
@@ -31,8 +33,10 @@ const Landing = () => {
   };
 
   const fetchInitilGenres = async() => {
-    const response = await customFetch('/genres');
-    setGenreOption(response.data);
+    const response = await customFetch('/genres.json');
+    const data = Object.keys(response?.data).map((key) => response.data[key]);
+    // console.log(data);
+    setGenreOption(data);
   }
 
   useEffect(() => {
@@ -92,7 +96,7 @@ const Landing = () => {
             className='me-2 p-2 rounded filterinp'
           >
             <option value="">Select genre</option>
-            {genreOption.map(gen => {
+            {genreOption?.map(gen => {
               return <option value={gen.name}>{gen.name}</option>;
             })}
           </select>
@@ -106,7 +110,7 @@ const Landing = () => {
         {/* movies card container */}
         <div className="row ">
           {filteredMovies?.map((movie) => (
-            <div className="col-md-4 mb-4">
+            <div className="col-md-4 mb-4" key={movie.id}>
               <LandMovieCard key={movie.id} movie={movie} />
             </div>
           ))}

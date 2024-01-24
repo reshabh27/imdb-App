@@ -8,7 +8,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 const NavbarComponent = () => {
   const user = useSelector((state) => state.userState.user);
-  // console.log(user);
   let canAddMovies =0;
   if(user?.role === "Admin")
   {
@@ -33,8 +32,7 @@ const NavbarComponent = () => {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
-            navbarScroll
+            style={{ maxHeight: "100px" }} navbarScroll
           >
             <Nav.Link as={Link} to="/">
               Home
@@ -59,8 +57,7 @@ const NavbarComponent = () => {
                 <Image
                   alt="Profile"
                   src="https://ionicframework.com/docs/img/demos/avatar.svg"
-                  width={30}
-                  height={30}
+                  width={30} height={30}
                   roundedCircle
                 />
               </Dropdown.Toggle>

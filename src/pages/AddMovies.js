@@ -1,5 +1,4 @@
 import React from 'react'
-import { customFetch } from '../utils';
 import AddMoviesForm from '../components/AddMoviesForm';
 import { redirect } from 'react-router-dom';
 import AddGenreForm from '../components/AddGenreForm';
@@ -10,10 +9,7 @@ export const loader = (store) => async() => {
     alert("You must be Admin in order to Update Movielist");
     return redirect("/");
   }
-  
-  const response = await customFetch("/posts");
-  // console.log(response.data);
-  return response?.data;
+  return null;
 };
 
 

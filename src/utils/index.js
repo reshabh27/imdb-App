@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const productionUrl = " http://localhost:3000";
+const productionUrl = "https://imdb-api-2d5d2-default-rtdb.firebaseio.com";
 
 export const customFetch = axios.create({
   baseURL: productionUrl,

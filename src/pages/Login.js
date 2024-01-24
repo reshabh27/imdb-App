@@ -8,24 +8,27 @@ import FormInput from "../components/FormInput";
 
 
 export const action = (store) => async ({ request }) => {
-    const formData = await request.formData();
-    const newData = Object.fromEntries(formData);
     try {
-      const usersData = await customFetch("/users");
-      // console.log(usersData.data);
+      // Get form data from the request
+      const formData = await request.formData();
+      const newData = Object.fromEntries(formData);
 
-      const isEmailExists = usersData.data.some(
-        (user) => ((user.email === newData.email) && (user.password === newData.password))
+      // Fetch user data from Firebase Realtime Database
+      const usersData = await customFetch("/users.json");
+      console.log(usersData.data);
+      // Check if the email exists in the user data
+      const userId = Object.keys(usersData.data).find(
+        (key) =>
+          usersData.data[key].email === newData.email &&
+          usersData.data[key].password === newData.password
       );
 
-      if (isEmailExists) {
+      if (userId) {
         // Email exists, proceed with login
-        const curentUser = usersData.data.filter((user) => ((user.email === newData.email) && (user.password === newData.password))
-      );
-        // console.log(curentUser[0]);
+        const currentUser = usersData.data[userId];
         store.dispatch(
           loginUser({
-            user: curentUser[0],
+            user: currentUser,
           })
         );
         return redirect("/");
@@ -36,18 +39,18 @@ export const action = (store) => async ({ request }) => {
         alert(errorMessage);
         return null;
       }
-    } 
-    catch (error) {
-      const errorMessage = "please double check your credentials";
-      // toast.error(errorMessage);
+    } catch (error) {
+      const errorMessage = "Please double-check your credentials";
       console.log(errorMessage);
+      alert(errorMessage);
       return null;
     }
   };
 
+
 const Login = () => {
   return (
-    <div style={{backgroundImage: "linear-gradient(to right, #7bd0f9, #68c3ff, #78b1ff, #a299ff, #d277fc)",height:'100vh'}} className="p-5">
+    <div style={{backgroundImage: "linear-gradient(to right, #7bd0f9, #68c3ff, #78b1ff, #a299ff, #d277fc)",minHeight:'100vh'}} className="p-5">
 
       <section className="container bg-white rounded mt-5" style={{width:"30%",minWidth:'275px'}}>
         <Form method="post" className="formcontrol">

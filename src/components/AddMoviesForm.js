@@ -33,14 +33,22 @@ const AddMoviesForm = () => {
     formData.reviews = [];
     formData.ratings = [];
     try {
-      const response = await customFetch.post("/posts", { ...formData });
-
-      if (response.status === 201) {
+      const response = await customFetch.post("/posts.json", { ...formData });
+      console.log(response);
+      if (response.statusText === 'OK') {
         dispatch(addToAllMovies(response.data));
         alert("Movie Succesfully added");
+        setFormData({
+          title: "",
+          description: "",
+          genre: [],
+          cast: [],
+          posterUrl: "",
+          releaseYear: "",
+        });
       } else {
         console.error("Error submitting form data:", response.statusText);
-        alert("error submiting the data")
+        alert("error submiting the data");
       }
     } catch (error) {
       console.error("Error:", error.message);
@@ -49,8 +57,7 @@ const AddMoviesForm = () => {
   };
 
   return (
-    <div
-      className="container rounded"
+    <div className="container rounded"
       style={{ backgroundColor: "white", width: "30%", minWidth: "275px" }} 
     >
       <div className="pt-5 mt-4">

@@ -24,11 +24,12 @@ const userSlice = createSlice({
     },
     setFavForUser: (state, action) => {
       const movieToAdd = action.payload;
-
+      console.log(movieToAdd);
       // Add the new movie to the favorite movies array
-      state.user.favMovie.push(movieToAdd);
+      state.user.favMovie = state.user.favMovie ?? [];
+      state.user.favMovie.push({ ...movieToAdd });
 
-      localStorage.setItem("userIMDB", JSON.stringify(state.user));
+      // localStorage.setItem("userIMDB", JSON.stringify(state.user));
     },
     removeFavForUser: (state, action) => {
       const movieToRemove = action.payload;

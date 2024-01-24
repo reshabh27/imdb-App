@@ -20,8 +20,8 @@ export const action = async ({ request }) => {
   data.role = "user";
   data.favMovie = [];
   try {
-    await customFetch.post("/users", data);
-    // console.log(response);
+    const response = await customFetch.post("/users", data);
+    console.log(response);
     alert("suceessfully created account");
     return redirect("/login");
   } catch (error) {
@@ -33,7 +33,7 @@ export const action = async ({ request }) => {
 
 const SignUp = () => {
   return (
-    <div style={{backgroundImage: "linear-gradient(to right, #7bd0f9, #68c3ff, #78b1ff, #a299ff, #d277fc)",height:'100vh'}} className="p-5">
+    <div style={{backgroundImage: "linear-gradient(to right, #7bd0f9, #68c3ff, #78b1ff, #a299ff, #d277fc)",minHeight:'100vh'}} className="p-5">
 
       <section className="container bg-white rounded mt-5" style={{width:"30%",minWidth:'275px'}}>
         <Form method="POST" className="p-4 rounded">
