@@ -20,7 +20,7 @@ export const action = async ({ request }) => {
   data.role = "user";
   data.favMovie = [];
   try {
-    const response = await customFetch.post("/users", data);
+    const response = await customFetch.post("/users.json", data);
     console.log(response);
     alert("suceessfully created account");
     return redirect("/login");

@@ -8,6 +8,7 @@ import { RevRateModal } from "./RevRateModal";
 
 
 const LandMovieCard = ({ movie }) => {
+  // console.log(movie);
   const user = useSelector((state) => state.userState.user);
   const [showModal, setShowModal] = useState(false);
 
@@ -22,7 +23,7 @@ const LandMovieCard = ({ movie }) => {
       navigate("/login");
       return;
     }
-    console.log(user);
+    // console.log(user);
     const isAlreadyFavorited = user?.favMovie?.some(
       (favMovie) => favMovie.id === movie.id
     );
@@ -32,13 +33,15 @@ const LandMovieCard = ({ movie }) => {
       return;
     }
 
+    let oldFavMovie = [...user.favMovie];
     try {
       dispatch(setFavForUser(movie));
-      // console.log(user);
-      const res = await customFetch.patch(`/users/${user.id}.json`, {
-        favMovie: user.favMovie,
-      });
-      console.log(res);
+      oldFavMovie.push(movie);
+      console.log(oldFavMovie);
+     const res = await customFetch.patch(`/users/${user.id}.json`, {
+       favMovie: oldFavMovie, // Use user.favMovie if it exists, otherwise use an empty array
+     });
+      // console.log(res);
       alert("added to favorite")
     } catch (error) {
       console.error("Error adding to favorites:", error.message);

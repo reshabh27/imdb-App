@@ -16,6 +16,7 @@ export const action = (store) => async ({ request }) => {
       // Fetch user data from Firebase Realtime Database
       const usersData = await customFetch("/users.json");
       console.log(usersData.data);
+
       // Check if the email exists in the user data
       const userId = Object.keys(usersData.data).find(
         (key) =>
@@ -26,6 +27,9 @@ export const action = (store) => async ({ request }) => {
       if (userId) {
         // Email exists, proceed with login
         const currentUser = usersData.data[userId];
+        // Add 'id' property to currentUser using the found userId
+        currentUser.id = userId;
+
         store.dispatch(
           loginUser({
             user: currentUser,
@@ -45,6 +49,7 @@ export const action = (store) => async ({ request }) => {
       alert(errorMessage);
       return null;
     }
+
   };
 
 

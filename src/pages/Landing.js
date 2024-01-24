@@ -17,19 +17,20 @@ const Landing = () => {
   const dispatch = useDispatch();
 
   const fetchInitialMovies = async () => {
-    try {
-      const response = await customFetch("/posts.json");
-      // console.log(response);
-       const movies = Object.keys(response?.data).map( (key) => response.data[key]);
+     try {
+       const response = await customFetch("/posts.json");
+       const movies = Object.keys(response?.data).map((key) => ({
+         id: key,
+         ...response.data[key],
+       }));
 
-      // console.log(movies);
-      // Dispatch the setAllMovies action to update the state
-      dispatch(setAllMovies(movies));
-      setFilteredMovies(movies);
-    } catch (error) {
-      console.error("Error fetching initial movies:", error.message);
-      alert("error fetching initial movies");
-    }
+       // Dispatch the setAllMovies action to update the state
+       dispatch(setAllMovies(movies));
+       setFilteredMovies(movies);
+     } catch (error) {
+       console.error("Error fetching initial movies:", error.message);
+       alert("Error fetching initial movies");
+     }
   };
 
   const fetchInitilGenres = async() => {
@@ -81,7 +82,7 @@ const Landing = () => {
 
      setFilteredMovies(filteredResults);
    };
-
+  //  console.log(filteredMovies);
 
   return (
     <div className='landingbody'>
@@ -110,7 +111,7 @@ const Landing = () => {
         {/* movies card container */}
         <div className="row ">
           {filteredMovies?.map((movie) => (
-            <div className="col-md-4 mb-4" key={movie.id}>
+            <div className="col-md-4 mb-4">
               <LandMovieCard key={movie.id} movie={movie} />
             </div>
           ))}

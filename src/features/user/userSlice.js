@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const getUserFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem("userIMDB")) || null;
@@ -24,12 +24,11 @@ const userSlice = createSlice({
     },
     setFavForUser: (state, action) => {
       const movieToAdd = action.payload;
-      console.log(movieToAdd);
       // Add the new movie to the favorite movies array
       state.user.favMovie = state.user.favMovie ?? [];
       state.user.favMovie.push({ ...movieToAdd });
-
-      // localStorage.setItem("userIMDB", JSON.stringify(state.user));
+      console.log(current(state.user));
+      localStorage.setItem("userIMDB", JSON.stringify(state.user));
     },
     removeFavForUser: (state, action) => {
       const movieToRemove = action.payload;

@@ -71,7 +71,7 @@
 
 .movie-link {
   /* Your link styles here */
-  text-decoration: none; /* Remove default underline */
+  text-decoration: none !important; /* Remove default underline */
   color: inherit; /* Inherit color from parent */
 }
 

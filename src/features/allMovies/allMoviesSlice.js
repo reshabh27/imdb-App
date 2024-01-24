@@ -21,6 +21,7 @@ const allMovieSlice = createSlice({
     },
     removeFromAllMovies: (state, action) => {},
     setAllMovies: (state, action) => {
+      // console.log(action.payload);
       // Set the initial movie list from the action payload
       state.allMoviesList = action.payload;
       state.numItemsInList = action.payload.length;
