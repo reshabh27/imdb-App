@@ -34,10 +34,19 @@ const Landing = () => {
   };
 
   const fetchInitilGenres = async() => {
-    const response = await customFetch('/genres.json');
-    const data = Object.keys(response?.data).map((key) => response.data[key]);
-    // console.log(data);
-    setGenreOption(data);
+    try {
+      const response = await customFetch("/genres.json");
+      const data = Object.keys(response?.data)?.map((key) => response.data[key]);
+
+      // Extract only the values from the 'newGenre' property
+      const genreValues = data?.map((genreObject) => genreObject.newGenre);
+
+      // console.log(genreValues);
+      setGenreOption(genreValues);
+    } catch (error) {
+      console.error("Error fetching genres:", error.message);
+      alert("Error fetching genres");
+    }
   }
 
   useEffect(() => {
@@ -47,10 +56,10 @@ const Landing = () => {
 
 
   const filterMoviesByRating = (movies, minRating) => {
-    return movies.filter((movie) => {
+    return movies?.filter((movie) => {
       // Calculate the average rating for the movie
-      const ratings = movie.ratings.map((rating) => rating.rate);
-      const averageRating =  ratings.length > 0 ? ratings.reduce((a, b) => a + b) / ratings.length : 0;
+      const ratings = movie?.ratings?.map((rating) => rating.rate);
+      const averageRating =  ratings?.length > 0 ? ratings?.reduce((a, b) => a + b) / ratings?.length : 0;
 
       // Check if the average rating is greater than or equal to the minimum rating
       return averageRating >= minRating;
@@ -98,7 +107,7 @@ const Landing = () => {
           >
             <option value="">Select genre</option>
             {genreOption?.map(gen => {
-              return <option value={gen.name}>{gen.name}</option>;
+              return <option value={gen}>{gen}</option>;
             })}
           </select>
           <input type="text" placeholder="Filter by IMDb rating"

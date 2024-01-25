@@ -15,22 +15,23 @@ export const RevRateModal = ({ movie, showModal, setShowModal }) => {
   const handleCloseModal = () => setShowModal(false);
 
     const handleSaveReviewAndRating = async () => {
+      // console.log(userreview,userrating);
       try {
         // Check if the user has already reviewed and rated the movie
-        const hasReviewed = movie.reviews.some((review) => review.userid === user.id);
-        const hasRated = movie.ratings.some((rating) => rating.userid === user.id);
-
+        const hasReviewed = movie?.reviews?.some((review) => review.userid === user.id);
+        const hasRated = movie?.ratings?.some((rating) => rating.userid === user.id);
+        // console.log(hasRated,hasReviewed);
         let updatedMovie = { ...movie };
 
         if (hasReviewed || hasRated) {
           // If the user has already reviewed or rated, update the existing review or rating
-          const updatedReviews = movie.reviews.map((review) =>
+          const updatedReviews = movie?.reviews?.map((review) =>
             review.userid === user.id
               ? { userid: user.id, comment: userreview, username: user.name }
               : review
           );
-
-          const updatedRatings = movie.ratings.map((rating) =>
+          console.log(updatedMovie);
+          const updatedRatings = movie?.ratings?.map((rating) =>
             rating.userid === user.id
               ? { userid: user.id, rate: userrating, username: user.name }
               : rating
@@ -38,12 +39,12 @@ export const RevRateModal = ({ movie, showModal, setShowModal }) => {
 
           if (userreview !== "")
           {
-              await customFetch.patch(`/posts/${movie.id}`, { reviews: updatedReviews});
+              await customFetch.patch(`/posts/${movie.id}.json`, { reviews: updatedReviews});
               updatedMovie = { ...updatedMovie, review: updatedReviews };
           }
           if (userrating !== 0)
           {
-            await customFetch.patch(`/posts/${movie.id}`, { ratings: updatedRatings});
+            await customFetch.patch(`/posts/${movie.id}.json`, { ratings: updatedRatings});
             updatedMovie = { ...updatedMovie, ratings: updatedRatings };
           }
         } 
@@ -57,16 +58,22 @@ export const RevRateModal = ({ movie, showModal, setShowModal }) => {
           const newRating = {
             userid: user.id, rate: userrating, username: user.name,
           };
+          // console.log(newReview,newRating);
           // Send a PATCH request to update the movie
-          if (userreview !== "")
-          {
-              await customFetch.patch(`/posts/${movie.id}`, { reviews: [...movie.reviews, newReview]});
-              updatedMovie = { ...updatedMovie, reviews: [...movie.reviews, newReview]};
+         let updatedMovie = { ...movie }; // Create a copy of the movie object
+
+          if (userreview !== "") {
+            // If there are existing reviews, add the new review to the array; otherwise, create a new array with the new review
+            const newReviews = movie.reviews ? [...movie.reviews, newReview] : [newReview];
+            await customFetch.patch(`/posts/${movie.id}.json`, { reviews: newReviews });
+            updatedMovie = { ...updatedMovie, reviews: newReviews };
           }
-          if (userrating !== 0)
-          {
-            await customFetch.patch(`/posts/${movie.id}`, {ratings: [...movie.ratings, newRating]});
-            updatedMovie = { ...updatedMovie, ratings: [...movie.ratings, newRating]};
+
+          if (userrating !== 0) {
+            // If there are existing ratings, add the new rating to the array; otherwise, create a new array with the new rating
+            const newRatings = movie.ratings ? [...movie.ratings, newRating] : [newRating];
+            await customFetch.patch(`/posts/${movie.id}.json`, { ratings: newRatings });
+            updatedMovie = { ...updatedMovie, ratings: newRatings };
           }
         }
         
