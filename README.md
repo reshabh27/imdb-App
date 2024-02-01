@@ -6,3 +6,7 @@
 - CSS
 - Bootstrap
 - Redux toolkit
+
+
+deployed site link : 
+https://imdb-app.onrender.com/
