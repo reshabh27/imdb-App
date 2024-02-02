@@ -6,3 +6,7 @@
 - CSS
 - Bootstrap
 - Redux toolkit
+
+
+## Features to be added
+- react toastify
