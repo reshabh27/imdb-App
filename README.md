@@ -8,5 +8,10 @@
 - Redux toolkit
 
 
+
+## deployed site link : 
+https://imdb-app.onrender.com/
+
+
 ## Features to be added
 - react toastify
