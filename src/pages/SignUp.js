@@ -9,8 +9,14 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  const oldUsers = await customFetch("/users");
-  const isNewEmailExists = oldUsers?.data?.some((user) => user.email === data.email);
+  const oldUsers = await customFetch("/users.json");
+  // console.log(oldUsers);
+  const computedArray = Object.keys(oldUsers?.data).map(key => ({
+      id:key,
+      ...oldUsers.data[key]
+  }))
+    // console.log(arr3);
+  const isNewEmailExists = computedArray.some((user) => user.email === data.email);
 
   if (isNewEmailExists) {
     // Email already exists
@@ -21,7 +27,7 @@ export const action = async ({ request }) => {
   data.favMovie = [];
   try {
     const response = await customFetch.post("/users.json", data);
-    console.log(response);
+    // console.log(response);
     alert("suceessfully created account");
     return redirect("/login");
   } catch (error) {

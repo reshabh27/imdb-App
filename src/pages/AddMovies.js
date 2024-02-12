@@ -6,7 +6,7 @@ import AddGenreForm from '../components/AddGenreForm';
 export const loader = (store) => async() => {
   const user = store.getState().userState?.user;
   if (user?.role !== "Admin") {
-    alert("You must be Admin in order to Update Movielist");
+    alert("You must be an Admin in order to Update Movielist");
     return redirect("/");
   }
   return null;

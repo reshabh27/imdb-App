@@ -15,7 +15,7 @@ export const action = (store) => async ({ request }) => {
 
       // Fetch user data from Firebase Realtime Database
       const usersData = await customFetch("/users.json");
-      console.log(usersData.data);
+      // console.log(usersData.data);
 
       // Check if the email exists in the user data
       const userId = Object.keys(usersData.data).find(
