@@ -15,3 +15,4 @@ https://imdb-app.onrender.com/
 
 ## Features to be added
 - react toastify
+- yup library for input fields validation
